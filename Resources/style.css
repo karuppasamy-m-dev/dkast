@@ -150,41 +150,61 @@ footer {
 
 .admin-panel {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    display: flex;
 }
 
 .nav-panel {
-    width: 30%;
+    width: 300px;
     height: 100%;
     background-color: #162133;
     padding-top: 50px;
 }
 
 .nav-panel-ul,
-.nav-panel-ul ul {
+.nav-panel-ul #empdrop ul {
     color: white;
     list-style-type: none;
     width: 100%;
-
+    padding-left: 10px;
 }
 
-.nav-panel-ul li {
-    width: fit-content;
+.nav-panel-ul li{
+    border-bottom: 1px solid #162133;
+    line-height: 35px;
+    width: 100%;
 }
 
-.nav-panel-ul li:hover {
-    background-color: #405d8bf6;
+#empdrop li:hover {
+    width: 80%;
+    border-bottom: 1px solid white;
+    animation: border_anime 0.2s linear forwards;
 }
 
-#empdrop a {
+@keyframes border_anime {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+#empdrop ul li a {
     color: white;
     text-decoration: none;
-    line-height: 35px;
 }
 
+.nav-content{
+    width: 100%;
+    height: 100%;
+}
 
-
-
+.add-btn{
+    background-color: #162133 !important;
+    color: white !important;
+}
 
 
 
