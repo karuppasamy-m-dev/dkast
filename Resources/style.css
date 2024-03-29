@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -8,22 +10,202 @@ nav {
     background-color: #162133;
 }
 
-nav img{
-    width: 100px;
+nav img {
+    width: 90px;
+    padding-right: 10px;
 }
 
-.gap30px{
+nav .navbar-brand h1 {
+    font-family: "Orbitron", sans-serif;
+    font-weight: 800;
+    font-size: 23px;
+    color: #50c2ff;
+}
+
+.gap30px {
     gap: 30px;
 }
 
-.btnbg{
+.btnbg {
     background-color: #3389f1;
     color: white;
     padding: 8px 20px;
     border-radius: 50rem;
     outline-style: none;
     border: none;
+    font-size: 14px;
+    font-weight: 700;
 }
-.form_design{
+
+.form_design {
     padding: 20px;
+}
+
+.modal-content {
+    background-color: #ccd6e652 !important;
+    backdrop-filter: blur(4px);
+}
+
+.banner-section {
+    height: 100vh;
+}
+
+.acc-links {
+    line-height: 30px;
+}
+
+.acc-links a {
+    color: #162133;
+    font-weight: 500;
+}
+
+
+/* footer */
+footer {
+    background-color: #162133;
+}
+
+.footer .brand a {
+    text-decoration: none;
+    font-family: "Orbitron", sans-serif;
+    font-weight: 800;
+    font-size: 23px;
+    background: -webkit-linear-gradient(white, #50c2ff, #2743c1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-content {
+    color: white;
+    opacity: 50%;
+}
+
+.footer h3 {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.footer ul,
+.footer ul a {
+    color: white;
+    text-decoration: none;
+    opacity: 80%;
+    list-style-type: none;
+}
+
+.footer ul li {
+    padding-left: 10px;
+}
+
+.rm-p {
+    padding-left: 0 !important;
+    gap: 10px;
+}
+
+.cpyrght {
+    color: white;
+    opacity: 80%;
+    font-size: small;
+}
+
+.hrline {
+    color: white;
+}
+
+.cpyrght div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Admin Dashboard */
+.logout-btn a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.logout-btn i {
+    color: white;
+}
+
+.logout-btn a:hover,
+.logout-btn a:hover i {
+    color: #3389f1 !important;
+}
+
+.admin-text h3 {
+    color: white;
+    font-size: large;
+    margin-bottom: 0;
+}
+
+.hr {
+    width: 2px;
+    height: 20px;
+    background-color: white;
+}
+
+.admin-panel {
+    width: 100%;
+    height: 100vh;
+}
+
+.nav-panel {
+    width: 30%;
+    height: 100%;
+    background-color: #162133;
+    padding-top: 50px;
+}
+
+.nav-panel-ul,
+.nav-panel-ul ul {
+    color: white;
+    list-style-type: none;
+    width: 100%;
+
+}
+
+.nav-panel-ul li {
+    width: fit-content;
+}
+
+.nav-panel-ul li:hover {
+    background-color: #405d8bf6;
+}
+
+#empdrop a {
+    color: white;
+    text-decoration: none;
+    line-height: 35px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media quary */
+@media only screen and (min-width:425px) {
+    .footer {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
 }
