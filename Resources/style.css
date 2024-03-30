@@ -121,6 +121,7 @@ footer {
 
 
 /* Admin Dashboard */
+
 .logout-btn a {
     color: white;
     text-decoration: none;
@@ -169,7 +170,7 @@ footer {
     padding-left: 10px;
 }
 
-.nav-panel-ul li{
+.nav-panel-ul li {
     border-bottom: 1px solid #162133;
     line-height: 35px;
     width: 100%;
@@ -196,19 +197,63 @@ footer {
     text-decoration: none;
 }
 
-.nav-content{
+.nav-content {
     width: 100%;
     height: 100%;
 }
 
-.add-btn{
+.add-btn {
     background-color: #162133 !important;
     color: white !important;
 }
 
+/* employee view html style */
 
+.btn-font {
+    font-size: 22px;
+    font-weight: 500;
+}
 
+.accordion-body{
+    background-color: #cdd5e2;
+}
 
+.emp-card {
+    height: 150px;
+    display: flex;
+    position: relative;
+}
+
+.emp-card-img img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50% 50%;
+    position: relative;
+    z-index: 2;
+    border: 5px solid white;
+    outline: 5px solid #3389f1;
+}
+
+.emp-card-body {
+    background-color: white;
+    width: 300px;
+    height: 150px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: absolute;
+    left: 75px;
+    z-index: 1;
+    padding: 10px;
+}
+
+.card-cont {
+    background-color: #3389f1;
+    height: 130px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px 10px 10px 75px;
+    color: #162133;
+}
 
 
 
