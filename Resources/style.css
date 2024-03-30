@@ -214,14 +214,18 @@ footer {
     font-weight: 500;
 }
 
-.accordion-body{
+.accordion-body {
     background-color: #cdd5e2;
 }
 
 .emp-card {
-    height: 150px;
+    height: 160px;
     display: flex;
     position: relative;
+}
+
+#empid {
+    margin-bottom: -10px;
 }
 
 .emp-card-img img {
@@ -231,31 +235,50 @@ footer {
     position: relative;
     z-index: 2;
     border: 5px solid white;
-    outline: 5px solid #3389f1;
+    outline: 5px solid #cdd5e2;
+    border-inline: 5px solid #3389f1;
 }
 
 .emp-card-body {
     background-color: white;
-    width: 300px;
+    width: 350px;
     height: 150px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     position: absolute;
-    left: 75px;
+    left: 85px;
     z-index: 1;
     padding: 10px;
 }
 
 .card-cont {
     background-color: #3389f1;
-    height: 130px;
+    height: 140px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     padding: 10px 10px 10px 75px;
     color: #162133;
 }
 
+.martop {
+    margin-top: -5px;
+}
 
+.martop:hover .trans {
+    position: relative;
+    animation: trans 1s infinite;
+    overflow-x: hidden;
+}
+
+@keyframes trans {
+    from {
+        left: 0;
+    }
+
+    to {
+        left: 10px;
+    }
+}
 
 
 
