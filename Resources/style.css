@@ -41,7 +41,7 @@ nav .navbar-brand h1 {
     padding: 20px;
 }
 
-.modal-content {
+#signinbtn .modal-content {
     background-color: #ccd6e652 !important;
     backdrop-filter: blur(4px);
 }
@@ -233,7 +233,7 @@ footer {
     height: 150px;
     border-radius: 50% 50%;
     position: relative;
-    z-index: 2;
+    z-index: 1;
     border: 5px solid white;
     outline: 5px solid #cdd5e2;
     border-inline: 5px solid #3389f1;
@@ -247,7 +247,7 @@ footer {
     border-bottom-right-radius: 20px;
     position: absolute;
     left: 85px;
-    z-index: 1;
+    /* z-index: 0; */
     padding: 10px;
 }
 
@@ -280,9 +280,25 @@ footer {
     }
 }
 
+.empviewmodal-cont .emp-lbl {
+    font-size: small;
+}
 
-
-
+.empviewmodal-cont .emp-val {
+    font-size: 23px;
+}
+.empviewmodal-cont{
+    position: relative;
+}
+.staff-images{
+    position: absolute;
+    right: 0;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.192);
+}
+.staff-images img{
+    border-radius: 6px;
+}
 
 
 
