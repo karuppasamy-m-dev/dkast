@@ -1,3 +1,15 @@
+#!C:/Users/karup/AppData/Local/Programs/Python/Python311/python.exe
+print("content-type:text/html \r\n\r\n")
+
+
+import cgi, cgitb
+import pymysql
+
+cgitb.enable()
+dbconn = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
+conn = dbconn.cursor()
+
+print("""
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,8 +33,7 @@
             <a href="" class="navbar-brand"><img src="./Resources/images/logo.png" alt="project_logo"></a>
             <div class="d-flex align-items-center">
                 <div class="admin-text d-flex align-items-center">
-                    <a href="./AdminDashboard.html"><i class="fa-solid fa-circle-user pe-1"
-                            style="color: white;"></i>Admin</a>
+                    <h3><i class="fa-solid fa-circle-user pe-1" style="color: white;"></i>Admin</h3>
                 </div>
                 <div class="mx-2 hr"></div>
                 <div class="logout-btn">
@@ -43,8 +54,8 @@
                     </li>
                     <div class="collapse" id="empdrop">
                         <ul>
-                            <li class="mt-2"><a class="px-5" href="./AdminEmpAdd.html">Add</a></li>
-                            <li class="mt-2"><a class="px-5" href="./AdminEmpView.html">View</a></li>
+                            <li class="mt-2"><a class="px-5" href="./AdminEmpAdd.py">Add</a></li>
+                            <li class="mt-2"><a class="px-5" href="./AdminEmpView.py">View</a></li>
                         </ul>
                     </div>
                     <li></li>
@@ -68,135 +79,111 @@
                             <div class="accordion-body">
                                 <div class="container py-5">
                                     <div class="card-parent">
-                                        <div class="row">
+                                        <div class="row">""")
+q = """select * from emp_details"""
+conn.execute(q)
+details = conn.fetchall()
+for emp in details:
+    eid = emp[0]
+    ename= emp[1]
+    eemailid = emp[2]
+    enumber = emp[3]
+    edob = emp[4]
+    egen = emp[5]
+    eaddress = emp[6]
+    epwd = emp[7]
+    empphotoloc = "Resources/images/staff_images/" + emp[8]
+    print("""
                                             <div class="col-xl-6 pb-md-4 pb-sm-4 pb-4">
                                                 <div class="emp-card">
                                                     <div class="emp-card-img">
-                                                        <img src="./Resources/images/staff_images/janagaraj.jpeg" alt=""
-                                                            class="img-fluid card-img-css shadow">
+                                                        <img src="%s" alt="" class="img-fluid card-img-css shadow">
                                                     </div>
                                                     <div class="emp-card-body">
                                                         <div class="card-cont">
                                                             <h6 class="d-flex justify-content-end small" id="empid">
-                                                                emp001</h6>
-                                                            <h4>Janagaraj M</h4>
-                                                            <h6><i class="fa-solid fa-envelope-open-text pe-2"
-                                                                    style="color: white;"></i>janagaraj@gmail.com</h6>
-                                                            <h6><i class="fa-solid fa-mobile-screen-button pe-2"
-                                                                    style="color: white;"></i>9876543210</h6>
+                                                                %s</h6>
+                                                            <h4>%s</h4>
+                                                            <h6 class="d-flex"><i
+                                                                    class="fa-solid fa-envelope-open-text pe-2"
+                                                                    style="color: white;"></i>%s</h6>
+                                                            <h6 class="d-flex"><i
+                                                                    class="fa-solid fa-mobile-screen-button pe-2"
+                                                                    style="color: white;"></i>%s</h6>
                                                             <span class="d-flex justify-content-end">
                                                                 <button type="button" class="btn martop"
                                                                     data-bs-toggle="modal"
-                                                                    data-bs-target="#empviewmodal">
+                                                                    data-bs-target="#empviewmodal"">
                                                                     Click to More Details<span class="trans"><i
                                                                             class="fa-solid fa-angle-right ms-2"></i><i
                                                                             class="fa-solid fa-angle-right"></i></span>
                                                                 </button>
-                                                                <div class="modal fade" id="empviewmodal" tabindex="-1"
-                                                                    aria-hidden="true">
+                                                                <div class="modal fade" id="empviewmodal" tabindex="-1" aria-hidden="true">
                                                                     <div class="modal-dialog modal-dialog-centered">
                                                                         <div class="modal-content">
-                                                                            <div class="modal-body">
-                                                                                <div class="px-md-4 pt-md-3 px-2">
-                                                                                    <div class="row">
-                                                                                        <div
-                                                                                            class="col empviewmodal-cont">
-                                                                                            <div
-                                                                                                class="staff-images p-1">
-                                                                                                <img src="./Resources/images/staff_images/janagaraj.jpeg"
-                                                                                                    alt="" width="110px"
-                                                                                                    height="130px">
+                                                                         <div class="modal-body">
+                                                                             <div class="px-md-4 pt-md-3 px-2">
+                                                                                <div class="row">
+                                                                                    <div class="col empviewmodal-cont">
+                                                                                        <div class="staff-images p-1">
+                                                                                            <img src="%s" alt="" width="110px" height="130px">
+                                                                                        </div>                                
+                                                                                        <div class="mb-4">
+                                                                                            <h4 class="emp-lbl">EmpId</h4>
+                                                                                            <h2 class="emp-val ps-2" id="pasteid">%s</h2>
+                                                                                        </div>
+                                                                                        <div class="mb-4">
+                                                                                            <h4 class="emp-lbl">Name</h4>
+                                                                                            <h2 class="emp-val ps-2">%s</h2>
+                                                                                        </div>
+                                                                                        <div class="mb-4">
+                                                                                            <h4 class="emp-lbl">Email ID</h4>
+                                                                                            <h2 class="emp-val ps-2">%s</h2>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col mb-4 ">
+                                                                                                <h4 class="emp-lbl">Date of Birth</h4>
+                                                                                                <h2 class="emp-val ps-2">%s</h2>
                                                                                             </div>
-                                                                                            <div class="mb-4">
-                                                                                                <h4 class="emp-lbl">Emp
-                                                                                                    Id</h4>
-                                                                                                <h2
-                                                                                                    class="emp-val ps-2">
-                                                                                                    emp001</h2>
-                                                                                            </div>
-                                                                                            <div class="mb-4">
-                                                                                                <h4 class="emp-lbl">Name
-                                                                                                </h4>
-                                                                                                <h2
-                                                                                                    class="emp-val ps-2">
-                                                                                                    Janagaraj</h2>
-                                                                                            </div>
-                                                                                            <div class="mb-4">
-                                                                                                <h4 class="emp-lbl">
-                                                                                                    Email ID</h4>
-                                                                                                <h2
-                                                                                                    class="emp-val ps-2">
-                                                                                                    Janagaraj@gmail.com
-                                                                                                </h2>
-                                                                                            </div>
-                                                                                            <div class="row">
-                                                                                                <div class="col mb-4 ">
-                                                                                                    <h4 class="emp-lbl">
-                                                                                                        Date
-                                                                                                        of Birth</h4>
-                                                                                                    <h2
-                                                                                                        class="emp-val ps-2">
-                                                                                                        12/jan/2023</h2>
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="col mb-4 d-flex justify-content-center">
-                                                                                                    <div>
-                                                                                                        <h4
-                                                                                                            class="emp-lbl">
-                                                                                                            Gender</h4>
-                                                                                                        <h2
-                                                                                                            class="emp-val ps-2">
-                                                                                                            Male
-                                                                                                        </h2>
-                                                                                                    </div>
+                                                                                            <div class="col mb-4 d-flex justify-content-center">
+                                                                                                <div>
+                                                                                                   <h4 class="emp-lbl">Gender</h4>
+                                                                                                   <h2 class="emp-val ps-2">%s</h2>
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="mb-4">
-                                                                                                <h4 class="emp-lbl">
-                                                                                                    Address</h4>
-                                                                                                <h2
-                                                                                                    class="emp-val ps-2">
-                                                                                                    56,
-                                                                                                    gandhipuram,
-                                                                                                    coimbatore,
-                                                                                                    tamilnadu
-                                                                                                    641012</h2>
-                                                                                            </div>
-                                                                                            <div class="mb-2">
-                                                                                                <h4 class="emp-lbl">
-                                                                                                    Phone Number</h4>
-                                                                                                <h2
-                                                                                                    class="emp-val ps-2">
-                                                                                                    +91
-                                                                                                    98652 86831</h2>
-                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="mb-4">
+                                                                                            <h4 class="emp-lbl">Address</h4>
+                                                                                            <h2 class="emp-val ps-2">%s</h2>
+                                                                                        </div>
+                                                                                        <div class="mb-2">
+                                                                                            <h4 class="emp-lbl">Phone Number</h4>
+                                                                                            <h2 class="emp-val ps-2">+91 %s</h2>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="modal-footer  row">
-                                                                                <div class="col w-100">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-danger w-100"
-                                                                                        data-bs-dismiss="modal">
-                                                                                        close
-                                                                                    </button>
+                                                                        </div>
+                                                                        <div class="modal-footer  row">
+                                                                            <div class="col w-100">
+                                                                                <button type="button" class="btn btn-danger w-100" data-bs-dismiss="modal">
+                                                                                close
+                                                                                </button>
                                                                                 </div>
-                                                                                <div class="col w-100">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-info w-100">
-                                                                                        Edit
-                                                                                    </button>
+                                                                                 <div class="col w-100">
+                                                                                     <button type="button" class="btn btn-info w-100">Edit</button>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div>                                                                 
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div>                                                                
                                                             </span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>""" % (empphotoloc, eid, ename, eemailid, enumber, empphotoloc, eid, ename, eemailid, edob, egen, eaddress, enumber))
+
+print("""
                                         </div>
                                     </div>
                                 </div>
@@ -250,7 +237,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>""")
+print("""
     <footer>
         <div class="container">
             <div class="footer py-5">
@@ -358,3 +346,4 @@
 </body>
 
 </html>
+""")

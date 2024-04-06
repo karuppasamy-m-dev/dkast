@@ -21,7 +21,8 @@
             <a href="" class="navbar-brand"><img src="./Resources/images/logo.png" alt="project_logo"></a>
             <div class="d-flex align-items-center">
                 <div class="admin-text d-flex align-items-center">
-                    <h3><i class="fa-solid fa-circle-user pe-1" style="color: white;"></i>Admin</h3>
+                    <a href="./AdminDashboard.html"><i class="fa-solid fa-circle-user pe-1"
+                            style="color: white;"></i>Admin</a>
                 </div>
                 <div class="mx-2 hr"></div>
                 <div class="logout-btn">
@@ -35,7 +36,7 @@
             <div class="container">
                 <ul class="nav-panel-ul">
                     <li class="navbar">
-                        <h5 class="navbar-toggler w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                        <h5 class="navbar-toggler w-100" type="button" data-bs-toggle="collapse" aria-expanded="true"
                             data-bs-target="#empdrop">Employee Details <i class="fa-solid fa-caret-down"
                                 style="color: white;"></i></h5>
 
@@ -56,8 +57,7 @@
         <div class="nav-content">
             <div class="container">
                 <div class="form_entry p-5">
-                    <form action="" method="post" enctype="multipart/form-data" name="emp_entry_form"
-                        class="form-control">
+                    <form method="post" enctype="multipart/form-data" name="emp_entry_form" class="form-control">
                         <div class="row mb-2">
                             <div class="col-sm-12 col-lg-3 p-2">
                                 <label for="empid" class="form-label">Employee Id:</label>
@@ -116,14 +116,67 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-lg-6">
-                                <label for="pwd" class="form-label">Password</label>
-                                <input type="text" class="form-control" name="Emp_Password" id="pwd" required>
+                                <div class="row mb-4">
+                                    <div class="col-lg-12">
+                                        <label for="pwd" class="form-label">Password</label>
+                                        <div class="row">
+                                            <div class="col-lg-11">
+                                                <input type="text" class="form-control" name="Emp_Password" id="pwd"
+                                                    required>
+                                            </div>
+                                            <div class="col-lg-1 d-flex align-items-center">
+                                                <i class="fa-regular fa-circle-xmark" style="color: red;"
+                                                    id="check-wr"></i>
+                                                <i class="fa-regular fa-circle-check" style="color: #00f531;"
+                                                    id="check-tick"></i>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label for="conpwd" class="form-label">Confirm Password</label>
+                                        <div class="row">
+                                            <div class="col-lg-11">
+                                                <input type="text" class="form-control" name="Emp_con_Password"
+                                                    id="conpwd" required oninput="return checktickfun()">
+                                            </div>
+                                            <div class="col-lg-1 d-flex align-items-center">
+                                                <i class="fa-regular fa-circle-xmark" id="check-wr1"
+                                                    style="color: red;"></i>
+                                                <i class="fa-regular fa-circle-check" id="check-tick1"
+                                                    style="color: #00f531;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-lg-6">
-                                <label for="conpwd" class="form-label">Confirm Password</label>
-                                <input type="text" class="form-control" name="Emp_con_Password" id="conpwd" required>
+                                <div class="row mb-4">
+                                    <div class="col-lg-12">
+                                        <label for="empdept" class="form-label">Department</label>
+                                        <select name="empdepart" id="empdept" class="form-select" required>
+                                            <option selected>Select Department</option>
+                                            <option value="Python">Python Full Stack</option>
+                                            <option value="Java">Java Full Stack</option>
+                                            <option value="Cloud-Computing">Cloud Computing</option>
+                                            <option value="Testing">Testing</option>
+                                            <option value="Trainee">Trainee</option>
+                                            <option value="Freelancer">Freelancing</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label for="empsalary" class="form-label">Salary</label>
+                                        <input type="number" class="form-control" name="Emp_salary" id="empsalary"
+                                            required>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                         <div class="row mb-4">
                             <div class="col">
                                 <label for="image_upload" class="form-label">Upload Your Image</label>
@@ -235,7 +288,36 @@
             </div>
         </div>
     </footer>
+    <script>
+        checkwr = document.getElementById("check-wr");
+        checkwr1 = document.getElementById("check-wr1");
+        checkwr.style.display = "None";
+        checkwr1.style.display = "None";
+        checktick = document.getElementById("check-tick");
+        checktick.style.display = "None";
+        checktick1 = document.getElementById("check-tick1");
+        checktick1.style.display = "None";
+        function checktickfun() {
+            password = document.forms["emp_entry_form"]["Emp_Password"];
+            conpass = document.forms["emp_entry_form"]["Emp_con_Password"];
 
+            if (password.value == conpass.value) {
+                checktick.style.display = "block";
+                checktick1.style.display = "block";
+                checkwr.style.display = "None";
+                checkwr1.style.display = "None";
+                return true;
+            }
+            else {
+                checkwr.style.display = "block";
+                checkwr1.style.display = "block";
+                checktick.style.display = "None";
+                checktick1.style.display = "None";
+                return false;
+            }
+
+        }
+    </script>
     <!-- script  bootstrap link-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

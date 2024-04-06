@@ -143,6 +143,14 @@ footer {
     margin-bottom: 0;
 }
 
+.admin-text a {
+    color: white;
+    font-size: large;
+    margin-bottom: 0;
+    text-decoration: none;
+    font-weight: 600;
+}
+
 .hr {
     width: 2px;
     height: 20px;
@@ -287,16 +295,19 @@ footer {
 .empviewmodal-cont .emp-val {
     font-size: 23px;
 }
-.empviewmodal-cont{
+
+.empviewmodal-cont {
     position: relative;
 }
-.staff-images{
+
+.staff-images {
     position: absolute;
     right: 0;
     border-radius: 6px;
     border: 1px solid rgba(0, 0, 0, 0.192);
 }
-.staff-images img{
+
+.staff-images img {
     border-radius: 6px;
 }
 
