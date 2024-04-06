@@ -270,12 +270,20 @@ footer {
 
 .martop {
     margin-top: -5px;
+    color: black;
+    text-decoration: none;
+
+}
+
+.martop:hover {
+    color: rgb(240, 219, 219);
 }
 
 .martop:hover .trans {
     position: relative;
     animation: trans 1s infinite;
     overflow-x: hidden;
+    color: rgb(240, 219, 219);
 }
 
 @keyframes trans {
