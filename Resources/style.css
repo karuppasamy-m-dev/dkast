@@ -185,7 +185,8 @@ footer {
 }
 
 .nav-panel-ul,
-.nav-panel-ul #empdrop ul {
+.nav-panel-ul #empdrop ul,
+#empinvendrop ul {
     color: white;
     list-style-type: none;
     width: 100%;
@@ -198,6 +199,7 @@ footer {
     width: 100%;
 }
 
+#empinvendrop li:hover,
 #empdrop li:hover {
     width: 80%;
     border-bottom: 1px solid white;
@@ -214,6 +216,7 @@ footer {
     }
 }
 
+#empinvendrop li a,
 #empdrop ul li a {
     color: white;
     text-decoration: none;
@@ -333,7 +336,9 @@ footer {
     border-radius: 6px;
 }
 
-
+.h-70px {
+    height: 80px;
+}
 
 
 
