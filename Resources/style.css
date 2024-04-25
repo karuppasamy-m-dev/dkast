@@ -356,3 +356,8 @@ footer {
 .font-capz {
     text-transform: capitalize;
 }
+.rmtextbox{
+    border: none !important;
+    width: 100px;
+    outline: none;
+}
