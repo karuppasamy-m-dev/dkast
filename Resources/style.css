@@ -186,7 +186,8 @@ footer {
 
 .nav-panel-ul,
 .nav-panel-ul #empdrop ul,
-#empinvendrop ul {
+#empinvendrop ul,
+#empleave ul {
     color: white;
     list-style-type: none;
     width: 100%;
@@ -199,6 +200,7 @@ footer {
     width: 100%;
 }
 
+#empleave li:hover,
 #empinvendrop li:hover,
 #empdrop li:hover {
     width: 80%;
@@ -216,6 +218,7 @@ footer {
     }
 }
 
+#empleave li a,
 #empinvendrop li a,
 #empdrop ul li a {
     color: white;
@@ -356,7 +359,8 @@ footer {
 .font-capz {
     text-transform: capitalize;
 }
-.rmtextbox{
+
+.rmtextbox {
     border: none !important;
     width: 100px;
     outline: none;
