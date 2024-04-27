@@ -10,7 +10,7 @@ nav {
     background-color: #162133;
 }
 
-nav img {
+nav .brand-logo {
     width: 90px;
     padding-right: 10px;
 }
@@ -37,14 +37,6 @@ nav .navbar-brand h1 {
     font-weight: 700;
 }
 
-.form_design {
-    padding: 20px;
-}
-
-#signinbtn .modal-content {
-    background-color: #ccd6e652 !important;
-    backdrop-filter: blur(4px);
-}
 
 .banner-section {
     height: 100vh;
@@ -54,11 +46,33 @@ nav .navbar-brand h1 {
     line-height: 30px;
 }
 
-.acc-links a {
+.acc-links .forgetpass {
+    color: red;
+    font-weight: 500;
+}
+
+.signinbtn {
+    background-color: #162133;
+    color: white;
+    font-weight: 600;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 5px;
+    border: none;
+    outline-style: none;
+}
+
+.newacc {
+    opacity: 50%;
     color: #162133;
     font-weight: 500;
 }
 
+.forgetpass:hover,
+.newacc:hover {
+    opacity: 100%;
+    color: #162133;
+}
 
 /* footer */
 footer {
@@ -171,7 +185,9 @@ footer {
 }
 
 .nav-panel-ul,
-.nav-panel-ul #empdrop ul {
+.nav-panel-ul #empdrop ul,
+#empinvendrop ul,
+#empleave ul {
     color: white;
     list-style-type: none;
     width: 100%;
@@ -184,6 +200,8 @@ footer {
     width: 100%;
 }
 
+#empleave li:hover,
+#empinvendrop li:hover,
 #empdrop li:hover {
     width: 80%;
     border-bottom: 1px solid white;
@@ -200,6 +218,8 @@ footer {
     }
 }
 
+#empleave li a,
+#empinvendrop li a,
 #empdrop ul li a {
     color: white;
     text-decoration: none;
@@ -319,7 +339,9 @@ footer {
     border-radius: 6px;
 }
 
-
+.h-70px {
+    height: 80px;
+}
 
 
 
@@ -331,4 +353,15 @@ footer {
         padding-right: 30px;
         padding-left: 30px;
     }
+}
+
+/* default class */
+.font-capz {
+    text-transform: capitalize;
+}
+
+.rmtextbox {
+    border: none !important;
+    width: 100px;
+    outline: none;
 }
