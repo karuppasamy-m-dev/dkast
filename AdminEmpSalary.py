@@ -1,10 +1,16 @@
+#!C:/Users/Jagathish/AppData/Local/Programs/Python/Python312/python.exe
+import pymysql
+import cgi
+import cgitb
+print("content-type:text/html \r\n\r\n")
+print("""
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dkast-Emp</title>
+    <title>Admin_page</title>
     <link rel="stylesheet" href="./Resources/style.css">
     <link rel="shortcut icon" href="./Resources/images/logo.png" type="image/x-icon">
     <!-- boostrap css -->
@@ -19,12 +25,12 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid pe-5">
-            <a href="" class="navbar-brand"><img src="./Resources/images/logo.png" alt="project_logo"
-                    class="brand-logo"></a>
+            <a href="" class="navbar-brand"><img class="brand-logo" src="./Resources/images/logo.png"
+                    alt="project_logo"></a>
             <div class="d-flex align-items-center">
                 <div class="admin-text d-flex align-items-center">
-                    <a href="./EmpDashboard.html"><i class="fa-solid fa-circle-user pe-1" style="color: white;"></i>Emp
-                        Name</a>
+                    <a href="./AdminDashboard.html"><i class="fa-solid fa-circle-user pe-1"
+                            style="color: white;"></i>Admin</a>
                 </div>
                 <div class="mx-2 hr"></div>
                 <div class="logout-btn">
@@ -34,22 +40,54 @@
         </div>
     </nav>
     <section class="admin-panel">
-        <div class="nav-panel">
+        <div class="nav-panel d-md-block d-none">
             <div class="container">
-                <ul class="nav-panel-ul">
-                    <li class="navbar">
-                        <h5 class="navbar-toggler w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
-                            data-bs-target="#empdrop">Inventory Details <i class="fa-solid fa-caret-down"
-                                style="color: white;"></i></h5>
-
+               <ul class="nav-panel-ul">
+                    <li class="mt-3">
+                        <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                            data-bs-target="#empdrop" aria-controls="empdrop">Employee Details <i
+                                class="fa-solid fa-caret-down" style="color: white;"></i></h5>
                     </li>
                     <div class="collapse" id="empdrop">
                         <ul>
-                            <li class="mt-2"><a class="px-5" href="./EmpInventoryAdd.html">Add</a></li>
-                            <li class="mt-2"><a class="px-5" href="./EmpInventoryView.html">View</a></li>
+                            <li class="mt-2"><a class="px-5" href="./AdminEmpAdd.html">Add</a></li>
+                            <li class="mt-2"><a class="px-5" href="./AdminEmpView.html">View</a></li>
                         </ul>
                     </div>
-                    <li></li>
+                    <li class="mt-3">
+                        <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                            data-bs-target="#empleave">Employee Leave <i class="fa-solid fa-caret-down"
+                                style="color: white;"></i>
+                        </h5>
+
+                    </li>
+                    <div class="collapse" id="empleave">
+                        <ul>
+                            <li class="mt-2"><a class="px-5" href="./AdminLeaveView.py">View</a></li>
+                        </ul>
+                    </div>
+                    <li class="mt-3">
+                        <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                            data-bs-target="#empsalary">Employee Salary <i class="fa-solid fa-caret-down"
+                                style="color: white;"></i>
+                        </h5>
+                    </li>
+                    <div class="collapse" id="empsalary">
+                        <ul>
+                            <li class="mt-2"><a class="px-5" href="./AdminEmpSalary.py">Calculation</a></li>
+                            <li class="mt-2"><a class="px-5" href="./AdminEmpSalaryView.py">View</a></li>
+                        </ul>
+                    </div>
+                    <li class="mt-3">
+                        <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                            data-bs-target="#empinvendrop" aria-controls="empinvendrop">Iventroy Details <i
+                                class="fa-solid fa-caret-down" style="color: white;"></i></h5>
+                    </li>
+                    <div class="collapse" id="empinvendrop">
+                        <ul>
+                            <li class="mt-2"><a class="px-5" href="./AdminInventoryView.py">View</a></li>
+                        </ul>
+                    </div>
                     <li></li>
                     <li></li>
                     <li></li>
@@ -58,79 +96,46 @@
         </div>
         <div class="nav-content">
             <div class="container">
-                <div class="row p-2">
-                    <div class="col">
-                        <table class="table">
-                            <thead>
-                                <tr class="h-70px">
-                                    <th scope="col">S.No</th>
-                                    <th scope="col">Video Id</th>
-                                    <th scope="col">Video Name</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Chapter</th>
-                                    <th scope="col">Uploaded Date</th>
-                                    <th scope="col">Video Details</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Comments</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="h-70px">
-                                    <th scope="row">1</th>
-                                    <td>vemp002</td>
-                                    <td>if condition</td>
-                                    <td>python full stack</td>
-                                    <td>Chapter 10</td>
-                                    <td>21/2/2024</td>
-                                    <td><a href="" type="button" data-bs-target="#videocontent"
-                                            data-bs-toggle="modal">video details to hover</a></td>
-                                    <div class="modal fade" id="videocontent" aria-hidden="true" tabindex="-1">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <video src="./Resources/uploaded_videos/KASC-CLASSROOM-C56.mp4"
-                                                        controls class="w-100"></video>
-                                                    <div class="pt-2">
-                                                        <h6>Description</h6>
-                                                        <p class="border p-3">Lorem ipsum, dolor sit amet consectetur
-                                                            adipisicing elit. Odio
-                                                            quae ipsum facere, illum beatae ex tempore eveniet cumque
-                                                            ipsa
-                                                            asperiores molestias quo amet numquam commodi magni nam
-                                                            tenetur
-                                                            similique quisquam.</p>
-                                                    </div>
-                                                    <div>
-                                                        <h6>Task</h6>
-                                                        <p class="border p-3">Lorem ipsum, dolor sit amet consectetur
-                                                            adipisicing elit. Odio
-                                                            quae ipsum facere, illum beatae ex tempore eveniet cumque
-                                                            ipsa
-                                                            asperiores molestias quo amet numquam commodi magni nam
-                                                            tenetur
-                                                            similique quisquam.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <td>Approved</td>
-                                    <td>Comments</td>
-                                </tr>
-                                <tr class="h-70px">
-                                    <th scope="row">1</th>
-                                    <td>vemp002</td>
-                                    <td>if condition</td>
-                                    <td>python full stack</td>
-                                    <td>Chapter 10</td>
-                                    <td>21/2/2024</td>
-                                    <td><a href="">video details to hover</a></td>
-                                    <td>Approved</td>
-                                    <td>Comments</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="border m-5 p-5">
+                    <h4 class=" text-center heading">Salary Details</h4>
+                    <table class="table">
+                        <thead>
+                            <tr class="h-70px">
+                                <th scope="col">S.No</th>
+                                <th scope="col">Emp ID</th>
+                                <th scope="col">Emp Name</th>
+                                <th scope="col">Department</th>                                
+                                <th scope="col">Salary</th>
+                                <th scope="col">View</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>""")
+cgitb.enable()
+dbconn = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
+cur = dbconn.cursor()
+query = """select * from emp_details"""
+cur.execute(query)
+data = cur.fetchall()
+for i in data:
+    eid = i[0]
+    empid = i[1]
+    empname = i[2]
+    empdepart = i[9]
+    empsalary = i[10]
+    print("""
+                                                   
+                            <tr class="">
+                                <th scope="row" class="py-3">%s</th>
+                                <td class="py-3">%s</td>
+                                <td class="py-3">%s</td>
+                                <td class="py-3">%s</td>
+                                <td class="py-3">%s</td>
+                                <td><a href="./AdminEmpSalaryCalc.py?id=%s" class="btn add-btn">Calculate Salary</a></td>                               
+                            </tr>""" % (eid, empid, empname, empdepart, empsalary, eid))
+print("""                            
+                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -242,3 +247,4 @@
 </body>
 
 </html>
+""")

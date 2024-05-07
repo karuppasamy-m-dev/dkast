@@ -1,8 +1,8 @@
 #!C:/Users/Jagathish/AppData/Local/Programs/Python/Python312/python.exe
-
 print("content-type:text/html \r\n\r\n")
 import pymysql
-import cgi, cgitb
+import cgi
+import cgitb
 
 form = cgi.FieldStorage()
 pid = form.getvalue('id')
@@ -31,6 +31,41 @@ print("""
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+    function dateFun() {
+        // Function logic here
+        console.log("dateFun() called");
+        var frdate = document.forms['leavereq_form']['fromdate'];
+        var endate = document.forms['leavereq_form']['todate'];
+        var reasonoption = document.forms['leavereq_form']['reason'];
+        var cdays = document.forms['leavereq_form']['cdate'];
+        var hidecolumn = document.getElementById("hidecol");
+        var daycount = new Date(endate.value) - new Date(frdate.value);
+        
+        var resultcount = daycount / (60 * 60 * 24 * 1000);
+        console.log(resultcount);
+        cdays.value = resultcount;
+        countofdays = cdays.value;
+        if (countofdays >= 4) {
+            alert("You are requesting more than 4 days. Please confirm the dates and mention the reason.");
+            reasonoption.value = "PL";
+            hidecolumn.classList.remove("d-none");
+        }
+        return countofdays;
+    }
+
+    function dispFun() {
+        // Function logic here
+        var reasonoption = document.forms['leavereq_form']['reason'];
+        var hidecolumn = document.getElementById("hidecol");
+        if (reasonoption.value !== "CL") {
+            return hidecolumn.classList.remove("d-none");
+        } else {
+            return hidecolumn.classList.add("d-none");
+        }
+    }
+</script>
+
 </head>
 
 <body>
@@ -40,15 +75,16 @@ print("""
                     class="brand-logo"></a>
             <div class="d-flex align-items-center">
                 <div class="admin-text d-flex align-items-center">""")
-empid = ''
+empid = ""
+empname = ""
 for i in data:
     empid = i[1]
+    empname = i[2]
     image = "./Resources/images/staff_images/" + i[11]
     print("""
                     <a href="./EmpDashboard.py?id=%s"><i class="fa-solid fa-circle-user pe-1" style="color: white;"></i>
-                        %s</a>""" % (pid, i[2]))
-upid = empid
-print("""
+                        %s</a>""" % (i[0],empname))
+    print("""
                 </div>
                 <div class="mx-2 hr"></div>
                 <div class="logout-btn">
@@ -71,6 +107,7 @@ print("""
                         <ul>
                             <li class="mt-2"><a class="px-5" href="./EmpInventoryAdd.py?id=%s">Add</a></li>
                             <li class="mt-2"><a class="px-5" href="./EmpInventoryView.py?id=%s">View</a></li>
+
                         </ul>
                     </div>
                     <li class="mt-3">
@@ -85,34 +122,7 @@ print("""
                             <li class="mt-2"><a class="px-5" href="./EmpLeaveReq.py?id=%s">Request</a></li>
                             <li class="mt-2"><a class="px-5" href="./EmpLeaveView.py?id=%s">View</a></li>
                         </ul>
-                    </div>""" % (pid,pid,pid,pid))
-dbconn.commit()
-dbconn.close()
-cgitb.enable()
-dbconn = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
-cur = dbconn.cursor()
-
-q = """select max(id) from Emp_Inventory"""
-cur.execute(q)
-re = cur.fetchone()
-
-if re[0] != None:
-    n = re[0]
-else:
-    n = 0
-
-z = ""
-if n < 9:
-    z = "000"
-elif 10 <= n <= 99:
-    z = "00"
-elif 100 <= n <= 999:
-    z = "0"
-
-vidid = "Vid"+z+str(n+1)
-dbconn.commit()
-dbconn.close()
-print("""
+                    </div>
                     <li></li>
                     <li></li>
                     <li></li>
@@ -120,72 +130,59 @@ print("""
                 </ul>
             </div>
         </div>
-        <div class="nav-content w-100">
+        <div class="nav-content">
             <div class="container">
-                <div class="form-outer p-5">
-                    <form method="post" name="inventoryAdd" class="form-control p-3" enctype="multipart/form-data">
-                        <div class="row mb-2">
-                            <div class="col-md-6">
-                                <label for="InId" class="form-label">Video ID</label>
-                                <input type="text" name="INV_id" id="InId" class="w-100 form-control" value="%s" readonly>
-                            </div>""" % vidid)
-print("""
-                            <div class="col-md-6">
-                                <label for="InName" class="form-label">Video Name</label>
-                                <input type="text" name="INV_Name" id="InName" class="w-100 form-control">
+                <div class="w-100 d-flex justify-content-end">
+                    <img src="%s" class="img-fluid border p-2 " width="100px" height="100px">
+                </div>""" % (pid, pid, pid, pid, image))
+print("""           
+                <div class="w-100 p-5 border m-2">
+                    <h3 class="mb-4">Leave Request</h3>
+                    <form name="leavereq_form" method="post" enctype="multipart/form-data">
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <label for="frmdate" class="form-label">From Date</label>
+                                <input type="date" class="form-control" id="frmdate" name="fromdate">
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="tdate" class="form-label">To Date</label>
+                                <input type="date" class="form-control" id="tdate" name="todate" oninput="return dateFun()">
+
+                            </div>
+                            <div class="col-sm-1">
+                                <label for="cdate" class="form-label">Days</label>
+                                <input type="text" class="form-control" id="cdate" placeholder="0" name="cdate" readonly>
                             </div>
                         </div>
-                        <div class="row d-flex align-items-center">
-                            <div class="col-md-6">
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <label for="InTitle" class="form-label">Title</label>
-                                        <input type="text" name="INV_Title" id="InTitle" class="w-100 form-control">
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <label for="InChap" class="form-label">Chapter <span
-                                                class="small text-muted">(optional)</span></label>
-                                        <input type="text" name="INV_Chapter" id="InChap" class="w-100 form-control">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <label for="InDate" class="form-label">Uploaded Date</label>
-                                        <input type="date" name="INV_Date" id="InDate" class="w-100 form-control">
-                                    </div>
-                                </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <label for="reason" class="form-label">Reason</label>
+                                <select name="reason" id="reason" class="form-control" oninput="return dispFun()">
+                                    <option>Select your leave</option>
+                                    <option value="CL">Casual Leave</option>
+                                    <option value="SL">Sick Leave</option>
+                                    <option value="PL">Personal Leave</option>
+                                </select>
                             </div>
-                            <div class="col-md-6">
-                                <label for="InDesc" class="form-label">Description</label>
-                                <textarea name="INV_Desc" id="InDesc" cols="30" rows="5"
-                                    class="w-100 form-control"></textarea>
-                            </div>
-                        </div>
-                        <div class="border">
-                            <div class="row py-3 m-1">
-                                <div class="col-md-6">
-                                    <label for="InVideo" class="form-label">Upload your Video</label>
-                                    <input type="file" name="INV_Video" id="InVideo" class="w-100 form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="InNotes" class="form-label">Upload your Notes</label>
-                                    <input type="file" name="INV_Notes" id="InNotes" class="w-100 form-control">
-                                </div>
-                            </div>
-                            <div class="row pb-3 m-1">
-                                <div class="col-md-12">
-                                    <label for="InTask" class="form-label">Task <span
-                                            class="small text-muted">(optional)</span></label>
-                                    <textarea name="INV_Task" id="InTask" cols="30" rows="5"
-                                        class="w-100 form-control"></textarea>
+                            <div class="col-sm-6">
+                                <div class="d-none" id="hidecol">
+                                    <label for="otherreason" class="form-label">Reason</label>
+                                    <input type="text" class="form-control" id="otherreason" name="otherreason"
+                                        >
                                 </div>
                             </div>
                         </div>
+                        <!--
+                        <div class="row">
+                            <div class="col-sm d-flex align-items-center">
+                                <label for="avilleave">Available Leaves on this Month:</label>
+                                <input type="text" name="leaveavil" class="form-control w-25 ms-2" id="avilleave">
+                            </div>
+                        </div>
+                        -->                                                
                         <div class="row pt-3">
-                            <div class="col-md-12 d-flex justify-content-center">
-                                <input type="submit" value="Submit" name="Submit" class="signinbtn px-4">
+                            <div class="col text-center">
+                                <input type="submit" name="Request" value="Request" class="btn add-btn px-4 py-2">
                             </div>
                         </div>
                     </form>
@@ -282,13 +279,45 @@ print("""
         </div>
         <hr class="hrline">
         <div class="container-fluid cpyrght px-5">
-            <div class="">
+            <div>
                 <p>Copyrights &copy; 2024 Dkast</p>
                 <p>its was developed by <span style="font-size: medium;">JK Techiezz..</span></p>
             </div>
         </div>
     </footer>
+    <script>        
+        var lcount = document.forms['leavereq_form']['leaveavil'];        
+        function dateFun(){
+            var frdate = document.forms['leavereq_form']['fromdate'];
+            var endate = document.forms['leavereq_form']['todate'];
+            var reasonoption = document.forms['leavereq_form']['reason'];
+            var cdays = document.forms['leavereq_form']['cdate'];
+            var hidecolumn = document.getElementById("hidecol");
+            var daycount = new Date(endate.value) - new Date(frdate.value);
+            
+            var resultcount = daycount / (60 * 60 * 24 * 1000);
+            console.log(resultcount);
+            cdays.value = resultcount;
+            countofdays = cdays.value;
+            if (countofdays >= 4) {
+                alert("You Request more then 4 days... confirm that date and mention that reason !!! \n that will under personal leave....");
+                reasonoption.value = "PL";
+                hidecolumn.classList.remove("d-none");
+            }
+            return countofdays;
+        }
 
+        function dispFun(){
+            var reasonoption = document.forms['leavereq_form']['reason'];
+            var hidecolumn = document.getElementById("hidecol");
+            if (reasonoption.value != "CL") {
+                return hidecolumn.classList.remove("d-none");
+            }
+            else {
+                return hidecolumn.classList.add("d-none");
+            }
+        }
+    </script>
     <!-- script  bootstrap link-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -297,67 +326,45 @@ print("""
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <!-- script  bootstrap link-->
-    <script>
-        function tdydateFun() {
-            var fromdate = document.getElementById('InDate');
-            var tdydate = new Date();
-            var ddate = tdydate.getDate();
-            var Month = tdydate.getMonth() + 1;
-            var year = tdydate.getFullYear();
-            fromdate.value = (tdydate.getFullYear()) + '-' + ('0' + (tdydate.getMonth() + 1)).slice(-2) + '-' + ('0' + tdydate.getDate()).slice(-2);
-            full = year + '-' + Month + '-' + ddate;
-            console.log(full);
-            // fromdate.value = full;
-        }
-        tdydateFun();
-    </script>
+   
 </body>
 
 </html>
 """)
-import pymysql
-import cgi, cgitb, os
+dbconn.commit()
+dbconn.close()
+
 
 cgitb.enable()
-dbconnt = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
-curs = dbconnt.cursor()
+dbconn1 = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
+curs = dbconn1.cursor()
 
-vidid = form.getvalue('INV_id')
-vidname = form.getvalue('INV_Name')
-vidtitle = form.getvalue('INV_Title')
-vidchapter = form.getvalue('INV_Chapter')
-viddate = form.getvalue('INV_Date')
-viddesc = form.getvalue('INV_Desc')
-vidiotask = form.getvalue('INV_Task')
-submitbtn = form.getvalue('Submit')
-state = "None"
+id = empid
+name = empname
+formdate = form.getvalue('fromdate')
+todate = form.getvalue('todate')
+dayscount = form.getvalue('cdate')
+letype = form.getvalue('reason')
+reasontxt = form.getvalue('otherreason')
+availleave = form.getvalue('leaveavail')
+submitbtn = form.getvalue('Request')
+
 if submitbtn != None:
-    vidfile = form['INV_Video']
-    if vidfile.filename:
-        vidfilename = os.path.basename(vidfile.filename)
-        open("Resources/Videos/" + vidfilename, "wb").write(vidfile.file.read())
-        vidnotes = form['INV_Notes']
-        if vidnotes.filename:
-            vidnotesname = os.path.basename(vidnotes.filename)
-            open("Resources/Notes/" + vidnotesname, "wb").write(vidnotes.file.read())
-            inqu = ("""INSERT INTO emp_inventory(VidId, VidName, VidTitle, VidChapter, VidUpdate, VidSrc, VidDesc, VidNotes, VidTask, VidStatus, uploadBy) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s', '%s') """ % (vidid, vidname, vidtitle, vidchapter, viddate, vidfilename, viddesc, vidnotesname, vidiotask, state, upid))
-            curs.execute(inqu)
-            print("""   <script>
-                        alert("Inventory Details Added");
-                        window.location.href="./EmpInventoryAdd.py?id=%s";
-                    </script>
-                """ % pid)
-        else:
-            print("""   <script>
-                                    alert("notes is not uploaded");
-                                   window.location.href="./EmpInventoryAdd.py?id=%s";
-                                </script>
-                            """ % pid)
+    query2 = """ INSERT INTO emp_leave_detailes(empid, empname, reasontype, reason, fromleave, toleave, dayscount, status, paidornot) VALUES( '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', 'not')""" % (id, name, letype, "Casual Leave" if letype == 'CL'else reasontxt, formdate, todate, dayscount, 'Waiting List')
+    curs.execute(query2)
+    if query2:
+        print("""
+        <script>
+            alert("Leave Request Sented to Admin");
+            window.location.href="./EmpLeaveView.py?id=%s";
+        </script>
+        """ % pid)
     else:
-        print("""   <script>
-                                alert("video is not uploaded");
-                                window.location.href="./EmpInventoryAdd.py?id=%s";
-                            </script>
-                        """ % pid)
-dbconnt.commit()
-dbconnt.close()
+        print("""
+        <script>
+            alert("Error to sent");
+        window.location.href="./EmpLeaveReq.py?id=%s";
+        </script>
+        """ % pid)
+dbconn1.commit()
+dbconn1.close()

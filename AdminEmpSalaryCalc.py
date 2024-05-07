@@ -1,3 +1,17 @@
+#!C:/Users/Jagathish/AppData/Local/Programs/Python/Python312/python.exe
+import pymysql
+import cgi
+import cgitb
+from datetime import date
+
+today = date.today()
+year = today.year
+
+form = cgi.FieldStorage()
+pid = form.getvalue('id')
+
+print("content-type:text/html \r\n\r\n")
+print("""
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,16 +28,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        function moncalc(){
+            var month = document.forms["Salary_calc_form"]["month"];
+            var working = document.forms["Salary_calc_form"]["wdays"];
+            var monthcheck = month.value;
+            if (monthcheck == 'Jan'){
+                working.value = "31";
+            }
+            if (monthcheck == 'Feb'){
+                working.value = "28";
+            }
+            if (monthcheck == 'Mar'){
+                working.value = "31";
+            }
+            if (monthcheck == 'April'){
+                working.value = "30";
+            }
+            if (monthcheck == 'May'){
+                working.value = "31";
+            }
+            if (monthcheck == 'June'){
+                working.value = "30";
+            }
+            if (monthcheck == 'July'){
+                working.value = "31";
+            }
+            if (monthcheck == 'Aug'){
+                working.value = "31";
+            }
+            if (monthcheck == 'Sep'){
+                working.value = "30";
+            }
+            if (monthcheck == 'Oct'){
+                working.value = "31";
+            }
+            if (monthcheck == 'Nov'){
+                working.value = "30";
+            }
+            if (monthcheck == 'Dec'){
+                working.value = "31";
+            }
+        }
+        function leave(){            
+            var working = document.forms["Salary_calc_form"]["wdays"];
+            var present = document.forms["Salary_calc_form"]["pdays"];
+            var leave = document.forms["Salary_calc_form"]["ldays"];            
+            var salary = document.forms["Salary_calc_form"]["salary"];
+            var gross = document.forms["Salary_calc_form"]["gsalary"];
+
+            var workingv = parseInt(working.value);
+            var leavev = parseInt(leave.value);
+            var presentv = workingv - leavev; 
+            present.value  = presentv;
+            
+            var salaryv = parseInt(salary.value);
+            var grossv = Math.round((salaryv * presentv)/workingv);
+            gross.value = grossv;
+        }
+    </script>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid pe-5">
-            <a href="" class="navbar-brand"><img class="brand-logo" src="./Resources/images/logo.png" alt="project_logo"></a>
+            <a href="" class="navbar-brand"><img class="brand-logo" src="./Resources/images/logo.png"
+                    alt="project_logo"></a>
             <div class="d-flex align-items-center">
                 <div class="admin-text d-flex align-items-center">
-                    <a href="./AdminDashboard.html"><i class="fa-solid fa-circle-user pe-1"
-                            style="color: white;"></i>Admin</a>
+                    <h3><i class="fa-solid fa-circle-user pe-1" style="color: white;"></i>Admin</h3>
                 </div>
                 <div class="mx-2 hr"></div>
                 <div class="logout-btn">
@@ -89,136 +162,105 @@
         </div>
         <div class="nav-content">
             <div class="container">
-                <div class="form_entry p-5">
-                    <form method="post" enctype="multipart/form-data" name="emp_entry_form" class="form-control">
+                <div class="border m-5 p-5">
+                    <h4 class=" text-center heading">Salary Details</h4>
+                    <form method="post" enctype="multipart/form-data" name="Salary_calc_form">""")
+cgitb.enable()
+dbconn = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
+cur = dbconn.cursor()
+
+query = """select * from emp_details where id = '%s'""" % pid
+cur.execute(query)
+data = cur.fetchall()
+lev = 0
+for i in data:
+    empid = i[1]
+    empname = i[2]
+    empsalary = i[10]
+    print("""
                         <div class="row mb-2">
                             <div class="col-sm-12 col-lg-3 p-2">
                                 <label for="empid" class="form-label">Employee Id:</label>
-                                <input type="text" class="form-control" name="Emp_id" id="empid">
+                                <input type="text" class="form-control" name="Emp_id" id="empid" value="%s" readonly>
                             </div>
                             <div class="col-sm-12 col-lg-9 p-2">
                                 <label for="empname" class="form-label">Employee Name</label>
-                                <input type="text" id="empname" class="form-control" name="Emp_Name" required>
+                                <input type="text" id="empname" class="form-control" name="Emp_Name" value="%s"
+                                    readonly>
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-lg-6 p-2">
-                                <label for="empmail" class="form-label">Email Id</label>
-                                <input type="email" class="form-control" id="empmail" name="Emp_Mailid" required>
+                            <div class="col-sm-12 col-lg-4 p-2">
+                                <label for="year" class="form-label">Year</label>
+                                <input type="text" id="year" class="form-control" name="year" value="%s" required>
                             </div>
-                            <div class="col-lg-6 p-2">
-                                <label for="empmob" class="form-label">Mobile Number</label>
-                                <input type="number" class="form-control" name="Emp_Number" id="empmob" required>
+                            <div class="col-sm-12 col-lg-4 p-2">
+                                <label for="month" class="form-label">Month</label>
+                                <select name="month" id="month" class="form-control" onchange="moncalc();leave();" required>
+                                    <option>select month</option>
+                                    <option value="Jan">Jan</option>
+                                    <option value="Feb">Feb</option>
+                                    <option value="Mar">Mar</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="Aug">Aug</option>
+                                    <option value="Sep">Sep</option>
+                                    <option value="Oct">Oct</option>
+                                    <option value="Nov">Nov</option>
+                                    <option value="Dec">Dec</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-lg-6 p-2">
-                                <div class="row mb-4">
-                                    <div class="col-lg-12">
-                                        <label for="empdob" class="form-label">Date of Birth</label>
-                                        <input type="date" class="form-control" id="empdob" name="Emp_Dob">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="form-label">Gender</label>
-                                    <div class="col-lg-12 px-2">
-                                        <div class="row px-4">
-                                            <div class="col-md-4 form-check ">
-                                                <label for="emp_male" class="form-check-label">Male</label>
-                                                <input type="radio" id="emp_male" name="Emp_Gender"
-                                                    class="form-check-input" value="Male">
-                                            </div>
-                                            <div class="col-md-4 form-check">
-                                                <label for="emp_female" class="form-check-label">Female</label>
-                                                <input type="radio" id="emp_female" name="Emp_Gender"
-                                                    class="form-check-input" value="Female">
-                                            </div>
-                                            <div class="col-md-4 form-check">
-                                                <label for="emp_other" class="form-check-label">Others</label>
-                                                <input type="radio" id="emp_other" name="Emp_Gender"
-                                                    class="form-check-input" value="Others">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-sm-12 col-lg-4 p-2">
+                                <label for="salary" class="form-label">Salary</label>
+                                <input type="text" name="salary" value="%s" id="salary" class="form-control" readonly>
                             </div>
-                            <div class="col-lg-6">
-                                <label for="empadd" class="form-label">Address</label><br>
-                                <textarea name="Emp_Address" id="empadd" rows="5" class="form-control"></textarea>
+                        </div>""" % (empid, empname, year, empsalary))
+    print("""                        
+                        <div class="row mb-2">                          
+                            <div class="col-sm-12 col-lg-3 p-2">
+                                <label for="wdays" class="form-label">Working Days</label>
+                                <input type="text" id="wdays" class="form-control" name="wdays" value="%s" required>
                             </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col-lg-6">
-                                <div class="row mb-4">
-                                    <div class="col-lg-12">
-                                        <label for="pwd" class="form-label">Password</label>
-                                        <div class="row">
-                                            <div class="col-lg-11">
-                                                <input type="text" class="form-control" name="Emp_Password" id="pwd"
-                                                    required>
-                                            </div>
-                                            <div class="col-lg-1 d-flex align-items-center">
-                                                <i class="fa-regular fa-circle-xmark" style="color: red;"
-                                                    id="check-wr"></i>
-                                                <i class="fa-regular fa-circle-check" style="color: #00f531;"
-                                                    id="check-tick"></i>
-                                            </div>
-                                        </div>
+                            <div class="col-sm-12 col-lg-3 p-2">
+                                <label for="pdays" class="form-label">Present Days</label>
+                                <input type="text" id="pdays" class="form-control" name="pdays" value="%s" required>
+                            </div>""")
+    dbconn.commit()
+    dbconn.close()
 
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <label for="conpwd" class="form-label">Confirm Password</label>
-                                        <div class="row">
-                                            <div class="col-lg-11">
-                                                <input type="text" class="form-control" name="Emp_con_Password"
-                                                    id="conpwd" required oninput="return checktickfun()">
-                                            </div>
-                                            <div class="col-lg-1 d-flex align-items-center">
-                                                <i class="fa-regular fa-circle-xmark" id="check-wr1"
-                                                    style="color: red;"></i>
-                                                <i class="fa-regular fa-circle-check" id="check-tick1"
-                                                    style="color: #00f531;"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="row mb-4">
-                                    <div class="col-lg-12">
-                                        <label for="empdept" class="form-label">Department</label>
-                                        <select name="empdepart" id="empdept" class="form-select" required>
-                                            <option selected>Select Department</option>
-                                            <option value="Python">Python Full Stack</option>
-                                            <option value="Java">Java Full Stack</option>
-                                            <option value="Cloud-Computing">Cloud Computing</option>
-                                            <option value="Testing">Testing</option>
-                                            <option value="Trainee">Trainee</option>
-                                            <option value="Freelancer">Freelancing</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <label for="empsalary" class="form-label">Salary</label>
-                                        <input type="number" class="form-control" name="Emp_salary" id="empsalary"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    cgitb.enable()
+    dbconn1 = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
+    cur1 = dbconn1.cursor()
 
-                        <div class="row mb-4">
-                            <div class="col">
-                                <label for="image_upload" class="form-label">Upload Your Image</label>
-                                <input type="file" class="form-control" name="Emp_Image" id="image_upload" required>
+    qu1 = """select * from emp_leave_detailes where empid = '%s' && status = 'Approved' && paidornot = 'not'""" % empid
+    cur1.execute(qu1)
+    lev = cur1.fetchall()
+    if lev:
+        for j in lev:
+            print("""                            
+                                <div class="col-sm-12 col-lg-3 p-2">
+                                    <label for="ldays" class="form-label">Leave Days</label>
+                                    <input type="text" class="form-control" name="ldays" value="%s" id="ldays" required>
+                                </div>""" % j[7])
+    else:
+        print("""                            
+                                        <div class="col-sm-12 col-lg-3 p-2">
+                                            <label for="ldays" class="form-label">Leave Days</label>
+                                            <input type="text" class="form-control" name="ldays" value="%s" id="ldays" required>
+                                        </div>""" % 0)
+    dbconn1.commit()
+    dbconn1.close()
+print("""
+                            <div class="col-sm-12 col-lg-3 p-2">
+                                <label for="gsalary" class="form-label">Gross pay</label>
+                                <input type="text" id="gsalary" class="form-control" name="gsalary" value="%s" required>
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mt-lg-5">
                             <div class="col-lg-12 d-flex justify-content-center">
-                                <input type="submit" value="Add" class="btn add-btn px-4 py-2">
+                                <input type="submit" name="Submit" value="Submit" class="btn add-btn px-4 py-2">
                             </div>
                         </div>
                     </form>
@@ -321,36 +363,7 @@
             </div>
         </div>
     </footer>
-    <script>
-        checkwr = document.getElementById("check-wr");
-        checkwr1 = document.getElementById("check-wr1");
-        checkwr.style.display = "None";
-        checkwr1.style.display = "None";
-        checktick = document.getElementById("check-tick");
-        checktick.style.display = "None";
-        checktick1 = document.getElementById("check-tick1");
-        checktick1.style.display = "None";
-        function checktickfun() {
-            password = document.forms["emp_entry_form"]["Emp_Password"];
-            conpass = document.forms["emp_entry_form"]["Emp_con_Password"];
 
-            if (password.value == conpass.value) {
-                checktick.style.display = "block";
-                checktick1.style.display = "block";
-                checkwr.style.display = "None";
-                checkwr1.style.display = "None";
-                return true;
-            }
-            else {
-                checkwr.style.display = "block";
-                checkwr1.style.display = "block";
-                checktick.style.display = "None";
-                checktick1.style.display = "None";
-                return false;
-            }
-
-        }
-    </script>
     <!-- script  bootstrap link-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -360,4 +373,47 @@
         crossorigin="anonymous"></script>
     <!-- script  bootstrap link-->
 </body>
+
 </html>
+""")
+cgitb.enable()
+dbconn2 = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
+curs2 = dbconn2.cursor()
+
+epid = form.getvalue("Emp_id")
+epyear = form.getvalue('year')
+epmonth = form.getvalue('month')
+epsalary = form.getvalue('salary')
+epwdays = form.getvalue('wdays')
+eppdays = form.getvalue('pdays')
+epldays = form.getvalue('ldays')
+epgrspay = form.getvalue('gsalary')
+btn = form.getvalue('Submit')
+
+if btn != None:
+    inqur = ("""INSERT INTO emp_salary_details (empid, year, month, salary, workingdays, presentdays, leavedays, gross_salary, calcdate) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')""" % (epid, epyear, epmonth, epsalary, epwdays, eppdays, epldays, epgrspay, today))
+    curs2.execute(inqur)
+    if inqur:
+        print("""
+            <script>
+                alert("Employee Salary Details Updated");
+                location.href = "./AdminEmpSalaryView.py";
+            </script>
+        """)
+        inqur1 = """INSERT INTO emp_leave_detailes (paidornot) VALUES ('PAID')"""
+        curs2.execute(inqur1)
+        # print("""
+        #             <script>
+        #                 alert("Employee Salary Details Updated");
+        #                 location.href = "./AdminEmpSalaryCalc.py?id=%s";
+        #             </script>
+        #         """ % pid)
+    else:
+        print("""
+            <script>
+                alert("query Error in Employee Salary Details Update");
+                location.href = "./AdminEmpSalaryCalc.py?id=%s";
+            </script>
+        """ % pid)
+dbconn2.commit()
+dbconn2.close()

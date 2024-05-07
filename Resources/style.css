@@ -1,367 +1,459 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 nav {
-    background-color: #162133;
+  background-color: #162133;
 }
 
 nav .brand-logo {
-    width: 90px;
-    padding-right: 10px;
+  width: 90px;
+  padding-right: 10px;
 }
 
 nav .navbar-brand h1 {
-    font-family: "Orbitron", sans-serif;
-    font-weight: 800;
-    font-size: 23px;
-    color: #50c2ff;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 800;
+  font-size: 23px;
+  color: #50c2ff;
 }
 
 .gap30px {
-    gap: 30px;
+  gap: 30px;
 }
 
 .btnbg {
-    background-color: #3389f1;
-    color: white;
-    padding: 8px 20px;
-    border-radius: 50rem;
-    outline-style: none;
-    border: none;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-
-.banner-section {
-    height: 100vh;
+  background-color: #3389f1;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50rem;
+  outline-style: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .acc-links {
-    line-height: 30px;
+  line-height: 30px;
 }
 
 .acc-links .forgetpass {
-    color: red;
-    font-weight: 500;
+  color: red;
+  font-weight: 500;
 }
 
 .signinbtn {
-    background-color: #162133;
-    color: white;
-    font-weight: 600;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-radius: 5px;
-    border: none;
-    outline-style: none;
+  background-color: #162133;
+  color: white;
+  font-weight: 600;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 5px;
+  border: none;
+  outline-style: none;
 }
 
 .newacc {
-    opacity: 50%;
-    color: #162133;
-    font-weight: 500;
+  opacity: 50%;
+  color: #162133;
+  font-weight: 500;
 }
 
 .forgetpass:hover,
 .newacc:hover {
-    opacity: 100%;
-    color: #162133;
+  opacity: 100%;
+  color: #162133;
 }
 
 /* footer */
 footer {
-    background-color: #162133;
+  background-color: #162133;
 }
 
 .footer .brand a {
-    text-decoration: none;
-    font-family: "Orbitron", sans-serif;
-    font-weight: 800;
-    font-size: 23px;
-    background: -webkit-linear-gradient(white, #50c2ff, #2743c1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 800;
+  font-size: 23px;
+  background: -webkit-linear-gradient(white, #50c2ff, #2743c1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .brand-content {
-    color: white;
-    opacity: 50%;
+  color: white;
+  opacity: 50%;
 }
 
 .footer h3 {
-    text-transform: uppercase;
-    font-size: 22px;
-    font-weight: 700;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 700;
 }
 
 .footer ul,
 .footer ul a {
-    color: white;
-    text-decoration: none;
-    opacity: 80%;
-    list-style-type: none;
+  color: white;
+  text-decoration: none;
+  opacity: 80%;
+  list-style-type: none;
 }
 
 .footer ul li {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 .rm-p {
-    padding-left: 0 !important;
-    gap: 10px;
+  padding-left: 0 !important;
+  gap: 10px;
 }
 
 .cpyrght {
-    color: white;
-    opacity: 80%;
-    font-size: small;
+  color: white;
+  opacity: 80%;
+  font-size: small;
 }
 
 .hrline {
-    color: white;
+  color: white;
 }
 
 .cpyrght div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
 
 /* Admin Dashboard */
 
 .logout-btn a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .logout-btn i {
-    color: white;
+  color: white;
 }
 
 .logout-btn a:hover,
 .logout-btn a:hover i {
-    color: #3389f1 !important;
+  color: #3389f1 !important;
 }
 
 .admin-text h3 {
-    color: white;
-    font-size: large;
-    margin-bottom: 0;
+  color: white;
+  font-size: large;
+  margin-bottom: 0;
 }
 
 .admin-text a {
-    color: white;
-    font-size: large;
-    margin-bottom: 0;
-    text-decoration: none;
-    font-weight: 600;
+  color: white;
+  font-size: large;
+  margin-bottom: 0;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .hr {
-    width: 2px;
-    height: 20px;
-    background-color: white;
+  width: 2px;
+  height: 20px;
+  background-color: white;
 }
 
 .admin-panel {
-    width: 100%;
-    height: 100%;
-    display: flex;
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
 
 .nav-panel {
-    width: 300px;
-    height: 100%;
-    background-color: #162133;
-    padding-top: 50px;
+  width: 300px;
+  height: 100%;
+  background-color: #162133;
+  padding-top: 50px;
 }
 
 .nav-panel-ul,
 .nav-panel-ul #empdrop ul,
 #empinvendrop ul,
-#empleave ul {
-    color: white;
-    list-style-type: none;
-    width: 100%;
-    padding-left: 10px;
+#empleave ul,
+#empsalary ul {
+  color: white;
+  list-style-type: none;
+  width: 100%;
+  padding-left: 10px;
 }
 
 .nav-panel-ul li {
-    border-bottom: 1px solid #162133;
-    line-height: 35px;
-    width: 100%;
+  border-bottom: 1px solid #162133;
+  line-height: 35px;
+  width: 100%;
 }
-
+#empsalary li:hover,
 #empleave li:hover,
 #empinvendrop li:hover,
 #empdrop li:hover {
-    width: 80%;
-    border-bottom: 1px solid white;
-    animation: border_anime 0.2s linear forwards;
+  width: 80%;
+  border-bottom: 1px solid white;
+  animation: border_anime 0.2s linear forwards;
 }
 
 @keyframes border_anime {
-    0% {
-        width: 0%;
-    }
+  0% {
+    width: 0%;
+  }
 
-    100% {
-        width: 100%;
-    }
+  100% {
+    width: 100%;
+  }
 }
-
+#empsalary li a,
 #empleave li a,
 #empinvendrop li a,
 #empdrop ul li a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .nav-content {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .add-btn {
-    background-color: #162133 !important;
-    color: white !important;
+  background-color: #162133 !important;
+  color: white !important;
 }
 
 /* employee view html style */
 
 .btn-font {
-    font-size: 22px;
-    font-weight: 500;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .accordion-body {
-    background-color: #cdd5e2;
+  background-color: #cdd5e2;
 }
 
 .emp-card {
-    height: 160px;
-    display: flex;
-    position: relative;
+  height: 160px;
+  display: flex;
+  position: relative;
 }
 
 #empid {
-    margin-bottom: -10px;
+  margin-bottom: -10px;
 }
 
 .emp-card-img img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50% 50%;
-    position: relative;
-    z-index: 1;
-    border: 5px solid white;
-    outline: 5px solid #cdd5e2;
-    border-inline: 5px solid #3389f1;
+  width: 150px;
+  height: 150px;
+  border-radius: 50% 50%;
+  position: relative;
+  z-index: 1;
+  border: 5px solid white;
+  outline: 5px solid #cdd5e2;
+  border-inline: 5px solid #3389f1;
 }
 
 .emp-card-body {
-    background-color: white;
-    width: 350px;
-    height: 150px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    position: absolute;
-    left: 85px;
-    /* z-index: 0; */
-    padding: 10px;
+  background-color: white;
+  width: 350px;
+  height: 150px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: absolute;
+  left: 85px;
+  /* z-index: 0; */
+  padding: 10px;
 }
 
 .card-cont {
-    background-color: #3389f1;
-    height: 140px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 10px 10px 10px 75px;
-    color: #162133;
+  background-color: #3389f1;
+  height: 140px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px 10px 10px 75px;
+  color: #162133;
 }
 
 .martop {
-    margin-top: -5px;
-    color: black;
-    text-decoration: none;
-
+  margin-top: -5px;
+  color: black;
+  text-decoration: none;
 }
 
 .martop:hover {
-    color: rgb(240, 219, 219);
+  color: rgb(240, 219, 219);
 }
 
 .martop:hover .trans {
-    position: relative;
-    animation: trans 1s infinite;
-    overflow-x: hidden;
-    color: rgb(240, 219, 219);
+  position: relative;
+  animation: trans 1s infinite;
+  overflow-x: hidden;
+  color: rgb(240, 219, 219);
 }
 
 @keyframes trans {
-    from {
-        left: 0;
-    }
+  from {
+    left: 0;
+  }
 
-    to {
-        left: 10px;
-    }
+  to {
+    left: 10px;
+  }
 }
 
 .empviewmodal-cont .emp-lbl {
-    font-size: small;
+  font-size: small;
 }
 
 .empviewmodal-cont .emp-val {
-    font-size: 23px;
+  font-size: 23px;
 }
 
 .empviewmodal-cont {
-    position: relative;
+  position: relative;
 }
 
 .staff-images {
-    position: absolute;
-    right: 0;
-    border-radius: 6px;
-    border: 1px solid rgba(0, 0, 0, 0.192);
+  position: absolute;
+  right: 0;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.192);
 }
 
 .staff-images img {
-    border-radius: 6px;
+  border-radius: 6px;
 }
 
 .h-70px {
-    height: 80px;
+  height: 80px;
 }
 
-
-
-
-
 /* media quary */
-@media only screen and (min-width:425px) {
-    .footer {
-        padding-right: 30px;
-        padding-left: 30px;
-    }
+@media only screen and (min-width: 425px) {
+  .footer {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
 }
 
 /* default class */
 .font-capz {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 .rmtextbox {
-    border: none !important;
-    width: 100px;
-    outline: none;
+  border: none !important;
+  width: 100px;
+  outline: none;
 }
+
+/* banner section */
+.banner {
+  background-color: #162133;
+  width: 100%;
+}
+.banner-parent {
+  position: relative;
+  width: 100%;
+}
+.backimg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 0;
+}
+.banner-txt {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+.banner-txt h1 {
+  color: white;
+  font-size: 64px;
+  font-weight: 900;
+  background-color: transparent;
+  text-shadow: -3px -3px 2px black;
+  padding-top: 200px;
+}
+.banner-txt span {
+  background: linear-gradient(to right, #2842c1, #57c4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 64px;
+  font-weight: 900;
+}
+#emailidtxt {
+  border: none;
+}
+.course,
+.contact-form {
+  background-color: #162133;
+  width: 100%;
+  color: white;
+}
+
+.CC-Head {
+  display: grid;
+  text-align: center;
+  justify-items: center;
+  color: whitesmoke;
+}
+.CC-Head h3 {
+  font-weight: 900;
+  font-size: 35px;
+  margin-bottom: 13px;
+}
+
+.CC-Head p {
+  opacity: 70%;
+}
+.CC-Part .CC-parthead {
+  list-style-type: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scrollbar-gutter: stable both-edges;
+  scrollbar-color: white #162133;
+  scroll-behavior: smooth;
+  
+}
+.CC-parthead button {
+  border: none;
+  background-color: transparent;
+  color: whitesmoke;
+  opacity: 70%;
+  margin: 0 20px;
+  padding: 0;
+  width: fit-content;
+  font-size: 19px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.CC-partContent li {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+.CC-partContent img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.CC-partContent h3 {
+  color: whitesmoke;
+  font-size: 17px;
+  font-size: 900;
+}
+

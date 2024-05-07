@@ -1,3 +1,19 @@
+#!C:/Users/Jagathish/AppData/Local/Programs/Python/Python312/python.exe
+print("content-type:text/html \r\n\r\n")
+import pymysql
+import cgi, cgitb
+
+form = cgi.FieldStorage()
+pid = form.getvalue('id')
+
+cgitb.enable()
+dbconn = pymysql.connect(host="localhost",user="root", password="", database="dkast_py_site")
+cur = dbconn.cursor()
+
+query = """select * from emp_details where id = '%s' """ % pid
+cur.execute(query)
+data = cur.fetchall()
+print("""
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,13 +38,19 @@
             <a href="" class="navbar-brand"><img src="./Resources/images/logo.png" alt="project_logo"
                     class="brand-logo"></a>
             <div class="d-flex align-items-center">
-                <div class="admin-text d-flex align-items-center">
-                    <a href="./EmpDashboard.html"><i class="fa-solid fa-circle-user pe-1" style="color: white;"></i>Emp
-                        Name</a>
+                <div class="admin-text d-flex align-items-center">""")
+for i in data:
+    empid = i[1]
+    image = "./Resources/images/staff_images/" + i[11]
+    print("""
+                    <a href="./EmpDashboard.py"><i class="fa-solid fa-circle-user pe-1" style="color: white;"></i>
+                        %s</a>""" % (i[2]))
+print("""
+                    
                 </div>
                 <div class="mx-2 hr"></div>
                 <div class="logout-btn">
-                    <a href="./index.html">Logout<i class="fa-solid fa-right-from-bracket ps-2"></i></a>
+                    <a href="./Index.py">Logout<i class="fa-solid fa-right-from-bracket ps-2"></i></a>
                 </div>
             </div>
         </div>
@@ -37,19 +59,33 @@
         <div class="nav-panel">
             <div class="container">
                 <ul class="nav-panel-ul">
-                    <li class="navbar">
-                        <h5 class="navbar-toggler w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                    <li class="mt-3">
+                        <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
                             data-bs-target="#empdrop">Inventory Details <i class="fa-solid fa-caret-down"
                                 style="color: white;"></i></h5>
 
                     </li>
                     <div class="collapse" id="empdrop">
                         <ul>
-                            <li class="mt-2"><a class="px-5" href="./EmpInventoryAdd.html">Add</a></li>
-                            <li class="mt-2"><a class="px-5" href="./EmpInventoryView.html">View</a></li>
+                            <li class="mt-2"><a class="px-5" href="./EmpInventoryAdd.py?id=%s">Add</a></li>
+                            <li class="mt-2"><a class="px-5" href="./EmpInventoryView.py?id=%s">View</a></li>
+
                         </ul>
                     </div>
-                    <li></li>
+                    <li class="mt-3">
+                        <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                            data-bs-target="#empleave">Leave <i class="fa-solid fa-caret-down"
+                                style="color: white;"></i>
+                        </h5>
+
+                    </li>
+                    <div class="collapse" id="empleave">
+                        <ul>
+                            <li class="mt-2"><a class="px-5" href="./EmpLeaveReq.py?id=%s">Request</a></li>
+                            <li class="mt-2"><a class="px-5" href="./EmpLeaveView.py?id=%s">View</a></li>
+                        </ul>
+                    </div>""" % (pid,pid,pid,pid))
+print("""           <li></li>
                     <li></li>
                     <li></li>
                     <li></li>
@@ -58,79 +94,41 @@
         </div>
         <div class="nav-content">
             <div class="container">
-                <div class="row p-2">
-                    <div class="col">
-                        <table class="table">
-                            <thead>
-                                <tr class="h-70px">
-                                    <th scope="col">S.No</th>
-                                    <th scope="col">Video Id</th>
-                                    <th scope="col">Video Name</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Chapter</th>
-                                    <th scope="col">Uploaded Date</th>
-                                    <th scope="col">Video Details</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Comments</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="h-70px">
-                                    <th scope="row">1</th>
-                                    <td>vemp002</td>
-                                    <td>if condition</td>
-                                    <td>python full stack</td>
-                                    <td>Chapter 10</td>
-                                    <td>21/2/2024</td>
-                                    <td><a href="" type="button" data-bs-target="#videocontent"
-                                            data-bs-toggle="modal">video details to hover</a></td>
-                                    <div class="modal fade" id="videocontent" aria-hidden="true" tabindex="-1">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <video src="./Resources/uploaded_videos/KASC-CLASSROOM-C56.mp4"
-                                                        controls class="w-100"></video>
-                                                    <div class="pt-2">
-                                                        <h6>Description</h6>
-                                                        <p class="border p-3">Lorem ipsum, dolor sit amet consectetur
-                                                            adipisicing elit. Odio
-                                                            quae ipsum facere, illum beatae ex tempore eveniet cumque
-                                                            ipsa
-                                                            asperiores molestias quo amet numquam commodi magni nam
-                                                            tenetur
-                                                            similique quisquam.</p>
-                                                    </div>
-                                                    <div>
-                                                        <h6>Task</h6>
-                                                        <p class="border p-3">Lorem ipsum, dolor sit amet consectetur
-                                                            adipisicing elit. Odio
-                                                            quae ipsum facere, illum beatae ex tempore eveniet cumque
-                                                            ipsa
-                                                            asperiores molestias quo amet numquam commodi magni nam
-                                                            tenetur
-                                                            similique quisquam.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <td>Approved</td>
-                                    <td>Comments</td>
-                                </tr>
-                                <tr class="h-70px">
-                                    <th scope="row">1</th>
-                                    <td>vemp002</td>
-                                    <td>if condition</td>
-                                    <td>python full stack</td>
-                                    <td>Chapter 10</td>
-                                    <td>21/2/2024</td>
-                                    <td><a href="">video details to hover</a></td>
-                                    <td>Approved</td>
-                                    <td>Comments</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="leaveview p-5">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">S.No</th>
+                                <th scope="col">Leave Type</th>
+                                <th scope="col">Reason</th>
+                                <th scope="col">From Date</th>
+                                <th scope="col">To Date</th>
+                                <th scope="col">Days Count</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>""")
+cgitb.enable()
+dbconn1 = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
+curs = dbconn1.cursor()
+
+query1 = """select * from emp_leave_detailes where empid = '%s'""" % empid
+curs.execute(query1)
+details = curs.fetchall()
+for j in details:
+    print("""
+                            <tr>
+                                <th scope="row">%s</th>
+                                <td><b>%s</b></td>
+                                <td style="width: 300px !important;">%s</td>
+                                <td>%s</td>
+                                <td>%s</td>
+                                <td>%s</td>
+                                <td>Leave <b>%s</b></td>
+                            </tr>"""%(j[0],j[3],j[4],j[5],j[6],j[7],j[9]))
+print("""                    
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -239,6 +237,8 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <!-- script  bootstrap link-->
+    
 </body>
 
 </html>
+""")
