@@ -123,6 +123,18 @@ for i in data:
                             <li class="mt-2"><a class="px-5" href="./EmpLeaveView.py?id=%s">View</a></li>
                         </ul>
                     </div>
+                    <li class="mt-3">
+                        <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                            data-bs-target="#empsalary">Salary <i class="fa-solid fa-caret-down"
+                                style="color: white;"></i>
+                        </h5>
+
+                    </li>
+                    <div class="collapse" id="empsalary">
+                        <ul>                            
+                            <li class="mt-2"><a class="px-5" href="./EmpSalaryView.py?id=%s">View</a></li>
+                        </ul>
+                    </div>
                     <li></li>
                     <li></li>
                     <li></li>
@@ -134,7 +146,7 @@ for i in data:
             <div class="container">
                 <div class="w-100 d-flex justify-content-end">
                     <img src="%s" class="img-fluid border p-2 " width="100px" height="100px">
-                </div>""" % (pid, pid, pid, pid, image))
+                </div>""" % (pid, pid, pid, pid, pid, image))
 print("""           
                 <div class="w-100 p-5 border m-2">
                     <h3 class="mb-4">Leave Request</h3>

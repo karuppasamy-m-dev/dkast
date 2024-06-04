@@ -46,8 +46,8 @@ print("""
                     </li>
                     <div class="collapse" id="empdrop">
                         <ul>
-                            <li class="mt-2"><a class="px-5" href="./AdminEmpAdd.html">Add</a></li>
-                            <li class="mt-2"><a class="px-5" href="./AdminEmpView.html">View</a></li>
+                            <li class="mt-2"><a class="px-5" href="./AdminEmpAdd.py">Add</a></li>
+                            <li class="mt-2"><a class="px-5" href="./AdminEmpView.py">View</a></li>
                         </ul>
                     </div>
                     <li class="mt-3">

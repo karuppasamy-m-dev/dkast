@@ -183,185 +183,176 @@ print("""
       </div>
     </section>
     <section class="course py-5">
-      <div class="container">
-        <div class="CC-Head mt-5">
-          <div class="w-75">
-            <h3>A Stream of Endless Knowledge.</h3>
-            <p>
-              We're kinda like Netflix, but for developers! Push your
-              programming skills to the next level, through expert screencasts
-              on many Programmimg Language and so much more.
-            </p>
-          </div>
+        <div class="container">
+            <div class="CC-Head mt-5">
+                <div class="w-75">
+                    <h3>A Stream of Endless Knowledge.</h3>
+                    <p>
+                        We're kinda like Netflix, but for developers! Push your
+                        programming skills to the next level, through expert screencasts
+                        on many Programmimg Language and so much more.
+                    </p>
+                </div>
+            </div>
+            <div class="CC-Part">
+                <ul class="CC-parthead py-3 d-flex">
+                    <li><button onclick="alldispFun()">All Topics</button></li>
+                    <li><button onclick="langdispFun()">Language</button></li>
+                    <li><button onclick="cloudispFun()">Cloud Based</button></li>
+                    <li><button onclick="framdispFun()">FrameWorks</button></li>
+                    <li><button onclick="dbdispFun()">Database</button></li>
+                    <li><button onclick="testdispFun()">Testing</button></li>
+                    <li><button onclick="scriptdispFun()">Script Language</button></li>
+                </ul>
+                <ul class="CC-partContent row">
+
+                    <li class="cloud col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=aws">
+                            <img src="./Resources/images/logos/aws-cloud.WEBP" alt="aws" />
+                            <h3>AWS Cloud Service</h3>
+                        </a>
+                    </li>
+                    <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=cpro">
+                            <img src="./Resources/images/logos/c-language.WEBP" alt="C-programe" />
+                            <h3>C Language</h3>
+                        </a>
+                    </li>
+                    <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=cpp">
+                            <img src="./Resources/images/logos/c.WEBP" alt="cpp" />
+                            <h3>C++ Language</h3>
+                        </a>
+                    </li>
+                    <li class="cloud col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=cloudcomputing">
+                            <img src="./Resources/images/logos/cloudcomputing.WEBP" alt="cloudcomputing" />
+                            <h3>Cloud Computing</h3>
+                        </a>
+                    </li>
+                    <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=csharp">
+                            <img src="./Resources/images/logos/CSharp-Language.WEBP" alt="CSharp-Language" />
+                            <h3>C# Language</h3>
+                        </a>
+                    </li>
+                    <li class="scriptl col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=css">
+                            <img src="./Resources/images/logos/css.WEBP" alt="CSS" />
+                            <h3>CSS</h3>
+                        </a>
+                    </li>
+                    <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=django">
+                            <img src="./Resources/images/logos/django-framewrok.WEBP" alt="Django-framewrok" />
+                            <h3>Django</h3>
+                        </a>
+                    </li>
+                    <li class="scriptl col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=html">
+                            <img src="./Resources/images/logos/html.WEBP" alt="HTML" />
+                            <h3>HTML</h3>
+                        </a>
+                    </li>
+                    <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=java">
+                            <img src="./Resources/images/logos/Java-language.WEBP" alt="Java" />
+                            <h3>Java</h3>
+                        </a>
+                    </li>
+                    <li class="scriptl col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=javascript">
+                            <img src="./Resources/images/logos/JS-language.WEBP" alt="javascript" />
+                            <h3>JavaScript</h3>
+                        </a>
+                    </li>
+                    <li class="Testing col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=katalon">
+                            <img src="./Resources/images/logos/katalon-testing.WEBP" alt="katalon-testing" />
+                            <h3>Katalon</h3>
+                        </a>
+                    </li>
+                    <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=kotlin">
+                            <img src="./Resources/images/logos/kotlin-language.WEBP" alt="Kotlin" />
+                            <h3>Kotlin</h3>
+                        </a>
+                    </li>
+                    <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=laravel">
+                            <img src="./Resources/images/logos/laravel-framework.WEBP" alt="laravel-framework" />
+                            <h3>Laravel</h3>
+                        </a>
+                    </li>
+                    <li class="Database col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=mysql">
+                            <img src="./Resources/images/logos/Mysql_logo.WEBP" alt="Mysql_logo" />
+                            <h3>Mysql</h3>
+                        </a>
+                    </li>
+                    <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=nodejs">
+                            <img src="./Resources/images/logos/nodejs.WEBP" alt="nodejs" />
+                            <h3>Node Js</h3>
+                        </a>
+                    </li>
+                    <li class="Database col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=oracle">
+                            <img src="./Resources/images/logos/Oracle-db.WEBP" alt="Oracle-db" />
+                            <h3>Oracle</h3>
+                        </a>
+                    </li>
+                    <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=php">
+                            <img src="./Resources/images/logos/PHP-language.WEBP" alt="PHP-language" />
+                            <h3>PHP</h3>
+                        </a>
+                    </li>
+                    <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=python">
+                            <img src="./Resources/images/logos/Python-language.WEBP" alt="Python-language" />
+                            <h3>Python</h3>
+                        </a>
+                    </li>
+                    <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=rprogram">
+                            <img src="./Resources/images/logos/R-language.WEBP" alt="R-language" />
+                            <h3>R Programmimg</h3>
+                        </a>
+                    </li>
+                    <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=reactjs">
+                            <img src="./Resources/images/logos/react-framework.webp" alt="react-framework" />
+                            <h3>React Js</h3>
+                        </a>
+                    </li>
+                    <li class="Testing col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=selenium">
+                            <img src="./Resources/images/logos/selinium.WEBP" alt="selenium" />
+                            <h3>Selenium</h3>
+                        </a>
+                    </li>
+                    <li class="Testing col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=testrail">
+                            <img src="./Resources/images/logos/TestRail-testing.WEBP" alt="TestRail-testing" />
+                            <h3>TestRail</h3>
+                        </a>
+                    </li>
+                    <li class="scriptl col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=typescript">
+                            <img src="./Resources/images/logos/TypeScript-language.WEBP" alt="TypeScript-language" />
+                            <h3>TypeScript</h3>
+                        </a>
+                    </li>
+                    <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
+                        <a href="./CourseDetails.py?course=vuejs">
+                            <img src="./Resources/images/logos/vue.WEBP" alt="vuejs" />
+                            <h3>Vue Js</h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="CC-Part">
-          <ul class="CC-parthead py-3 d-flex">
-            <li><button>All Topics</button></li>
-            <li><button>Language</button></li>
-            <li><button>Cloud Based</button></li>
-            <li><button>FrameWorks</button></li>
-            <li><button>Database</button></li>
-            <li><button>Testing</button></li>
-            <li><button>Script Language</button></li>
-          </ul>
-          <ul class="CC-partContent row">
-            <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
-              <img src="./Resources/images/logos/angular.WEBP" alt="angular" />
-              <h3>Angular Js</h3>
-            </li>
-            <li class="cloud col-lg-3 col-sm-6 col-md-4 my-2">
-              <img src="./Resources/images/logos/aws-cloud.WEBP" alt="aws" />
-              <h3>AWS Cloud Service</h3>
-            </li>
-            <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/c-language.WEBP"
-                alt="C-programe"
-              />
-              <h3>C Language</h3>
-            </li>
-            <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
-              <img src="./Resources/images/logos/c.WEBP" alt="cpp" />
-              <h3>C++ Language</h3>
-            </li>
-            <li class="cloud col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/cloudcomputing.WEBP"
-                alt="cloudcomputing"
-              />
-              <h3>Cloud Computing</h3>
-            </li>
-            <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/CSharp-Language.WEBP"
-                alt="CSharp-Language"
-              />
-              <h3>C# Language</h3>
-            </li>
-            <li class="scriptl col-lg-3 col-sm-6 col-md-4 my-2">
-              <img src="./Resources/images/logos/css.WEBP" alt="CSS" />
-              <h3>CSS</h3>
-            </li>
-            <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/django-framewrok.WEBP"
-                alt="Django-framewrok"
-              />
-              <h3>Django</h3>
-            </li>
-            <li class="scriptl col-lg-3 col-sm-6 col-md-4 my-2">
-              <img src="./Resources/images/logos/html.WEBP" alt="HTML" />
-              <h3>HTML</h3>
-            </li>
-            <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/Java-language.WEBP"
-                alt="Java"
-              />
-              <h3>Java</h3>
-            </li>
-            <li class="scriptl col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/JS-language.WEBP"
-                alt="javascript"
-              />
-              <h3>JavaScript</h3>
-            </li>
-            <li class="Testing col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/katalon-testing.WEBP"
-                alt="katalon-testing"
-              />
-              <h3>Katalon</h3>
-            </li>
-            <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/kotlin-language.WEBP"
-                alt="Kotlin"
-              />
-              <h3>Kotlin</h3>
-            </li>
-            <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/laravel-framework.WEBP"
-                alt="laravel-framework"
-              />
-              <h3>Laravel</h3>
-            </li>
-            <li class="Database col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/Mysql_logo.WEBP"
-                alt="Mysql_logo"
-              />
-              <h3>Mysql</h3>
-            </li>
-            <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
-              <img src="./Resources/images/logos/nodejs.WEBP" alt="nodejs" />
-              <h3>Node Js</h3>
-            </li>
-            <li class="Database col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/Oracle-db.WEBP"
-                alt="Oracle-db"
-              />
-              <h3>Oracle</h3>
-            </li>
-            <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/PHP-language.WEBP"
-                alt="PHP-language"
-              />
-              <h3>PHP</h3>
-            </li>
-            <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/Python-language.WEBP"
-                alt="Python-language"
-              />
-              <h3>Python</h3>
-            </li>
-            <li class="Language col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/R-language.WEBP"
-                alt="R-language"
-              />
-              <h3>R Programmimg</h3>
-            </li>
-            <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/react-framework.webp"
-                alt="react-framework"
-              />
-              <h3>React Js</h3>
-            </li>
-            <li class="Testing col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/selinium.WEBP"
-                alt="selenium"
-              />
-              <h3>Selenium</h3>
-            </li>
-            <li class="Testing col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/TestRail-testing.WEBP"
-                alt="TestRail-testing"
-              />
-              <h3>TestRail</h3>
-            </li>
-            <li class="scriptl col-lg-3 col-sm-6 col-md-4 my-2">
-              <img
-                src="./Resources/images/logos/TypeScript-language.WEBP"
-                alt="TypeScript-language"
-              />
-              <h3>TypeScript</h3>
-            </li>
-            <li class="FrameWorks col-lg-3 col-sm-6 col-md-4 my-2">
-              <img src="./Resources/images/logos/vue.WEBP" alt="vuejs" />
-              <h3>Vue Js</h3>
-            </li>
-          </ul>
-        </div>
-      </div>
     </section>
     <footer>
         <div class="container">
@@ -508,6 +499,141 @@ print("""
 
     <!-- script  bootstrap link-->
     <script>
+      // display None Function Start
+        function langDispNoneFun() {
+            var Langhide = document.getElementsByClassName('Language');
+            for (var i = 0; i < Langhide.length; i++) {
+                Langhide[i].style.display = "None";
+            }
+        }
+        function DBDispNoneFun() {
+            var Databasehide = document.getElementsByClassName('Database');
+            for (var i = 0; i < Databasehide.length; i++) {
+                Databasehide[i].style.display = "None";
+            }
+        }
+        function TestDispNoneFun() {
+            var Testinghide = document.getElementsByClassName('Testing');
+            for (var i = 0; i < Testinghide.length; i++) {
+                Testinghide[i].style.display = "None";
+            }
+        }
+        function FWDispNoneFun() {
+            var FrameWorkshide = document.getElementsByClassName('FrameWorks');
+            for (var i = 0; i < FrameWorkshide.length; i++) {
+                FrameWorkshide[i].style.display = "None";
+            }
+        }
+        function STDispNoneFun() {
+            var scriptlhide = document.getElementsByClassName('scriptl');
+            for (var i = 0; i < scriptlhide.length; i++) {
+                scriptlhide[i].style.display = "None";
+            }
+        }
+        function CDDispNoneFun() {
+            var cloudhide = document.getElementsByClassName('cloud');
+            for (var i = 0; i < cloudhide.length; i++) {
+                cloudhide[i].style.display = "None";
+            }
+        }
+        // display None Function End
+        // display block Function Start
+        function langDispFun() {
+            var Langdisp = document.getElementsByClassName('Language');
+            for (var i = 0; i < Langdisp.length; i++) {
+                Langdisp[i].style.display = "Block";
+            }
+        }
+        function DBDispFun() {
+            var Databasedisp = document.getElementsByClassName('Database');
+            for (var i = 0; i < Databasedisp.length; i++) {
+                Databasedisp[i].style.display = "Block";
+            }
+        }
+        function TestDispFun() {
+            var Testingdisp = document.getElementsByClassName('Testing');
+            for (var i = 0; i < Testingdisp.length; i++) {
+                Testingdisp[i].style.display = "Block";
+            }
+        }
+        function FWDispFun() {
+            var FrameWorksdisp = document.getElementsByClassName('FrameWorks');
+            for (var i = 0; i < FrameWorksdisp.length; i++) {
+                FrameWorksdisp[i].style.display = "Block";
+            }
+        }
+        function STDispFun() {
+            var scriptldisp = document.getElementsByClassName('scriptl');
+            for (var i = 0; i < scriptldisp.length; i++) {
+                scriptldisp[i].style.display = "Block";
+            }
+        }
+        function CDDispFun() {
+            var cloudisp = document.getElementsByClassName('cloud');
+            for (var i = 0; i < cloudisp.length; i++) {
+                cloudisp[i].style.display = "Block";
+            }
+        }
+        // display Block Function End
+        function alldispFun() {
+            langDispFun();
+            CDDispFun();
+            STDispFun();
+            FWDispFun();
+            TestDispFun();
+            DBDispFun();
+        }
+        function langdispFun() {
+            langDispFun();
+            CDDispNoneFun();
+            STDispNoneFun();
+            FWDispNoneFun();
+            TestDispNoneFun();
+            DBDispNoneFun();
+        }
+        function cloudispFun() {
+            langDispNoneFun();
+            CDDispFun();
+            STDispNoneFun();
+            FWDispNoneFun();
+            TestDispNoneFun();
+            DBDispNoneFun();
+        }
+        function framdispFun() {
+            langDispNoneFun();
+            CDDispNoneFun();
+            STDispNoneFun();
+            FWDispFun();
+            TestDispNoneFun();
+            DBDispNoneFun();
+        }
+
+        function dbdispFun() {
+            langDispNoneFun();
+            CDDispNoneFun();
+            STDispNoneFun();
+            FWDispNoneFun();
+            TestDispNoneFun();
+            DBDispFun();
+        }
+        function testdispFun() {
+            langDispNoneFun();
+            CDDispNoneFun();
+            STDispNoneFun();
+            FWDispNoneFun();
+            TestDispFun();
+            DBDispNoneFun();
+        }
+        function scriptdispFun() {
+            langDispNoneFun();
+            CDDispNoneFun();
+            STDispFun();
+            FWDispNoneFun();
+            TestDispNoneFun();
+            DBDispNoneFun();
+        }
+        
+
         var upass, upass1;
         var checkbtn, checkbtn1;
         stpass = document.forms['stafflogin_form']['stpass'];

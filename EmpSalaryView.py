@@ -1,6 +1,22 @@
 #!C:/Users/Jagathish/AppData/Local/Programs/Python/Python312/python.exe
+import pymysql
+import cgi
+import cgitb
 print("content-type:text/html \r\n\r\n")
-print("""<!DOCTYPE html>
+
+form = cgi.FieldStorage()
+eid = form.getvalue('id')
+
+cgitb.enable()
+dbconn = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
+cur = dbconn.cursor()
+
+query = """select * from emp_details where id = '%s'""" % eid
+cur.execute(query)
+data = cur.fetchall()
+
+print("""
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,9 +40,16 @@ print("""<!DOCTYPE html>
             <a href="" class="navbar-brand"><img src="./Resources/images/logo.png" alt="project_logo"
                     class="brand-logo"></a>
             <div class="d-flex align-items-center">
-                <div class="admin-text d-flex align-items-center">
-                    <a href="./AdminDashboard.html"><i class="fa-solid fa-circle-user pe-1"
-                            style="color: white;"></i>Admin</a>
+                <div class="admin-text d-flex align-items-center">""")
+empid = ""
+for i in data:
+    empid = i[1]
+    image = "./Resources/images/staff_images/" + i[11]
+    print("""
+                    <a href="./EmpDashboard.py"><i class="fa-solid fa-circle-user pe-1" style="color: white;"></i>
+                        %s</a>""" % (i[2]))
+print("""
+                    
                 </div>
                 <div class="mx-2 hr"></div>
                 <div class="logout-btn">
@@ -41,49 +64,44 @@ print("""<!DOCTYPE html>
                 <ul class="nav-panel-ul">
                     <li class="mt-3">
                         <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
-                            data-bs-target="#empdrop" aria-controls="empdrop">Employee Details <i
-                                class="fa-solid fa-caret-down" style="color: white;"></i></h5>
+                            data-bs-target="#empdrop">Inventory Details <i class="fa-solid fa-caret-down"
+                                style="color: white;"></i></h5>
+
                     </li>
                     <div class="collapse" id="empdrop">
                         <ul>
-                            <li class="mt-2"><a class="px-5" href="./AdminEmpAdd.py">Add</a></li>
-                            <li class="mt-2"><a class="px-5" href="./AdminEmpView.py">View</a></li>
+                            <li class="mt-2"><a class="px-5" href="./EmpInventoryAdd.py?id=%s">Add</a></li>
+                            <li class="mt-2"><a class="px-5" href="./EmpInventoryView.py?id=%s">View</a></li>
+
                         </ul>
                     </div>
                     <li class="mt-3">
                         <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
-                            data-bs-target="#empleave">Employee Leave <i class="fa-solid fa-caret-down"
+                            data-bs-target="#empleave">Leave <i class="fa-solid fa-caret-down"
                                 style="color: white;"></i>
                         </h5>
 
                     </li>
                     <div class="collapse" id="empleave">
                         <ul>
-                            <li class="mt-2"><a class="px-5" href="./AdminLeaveView.py">View</a></li>
+                            <li class="mt-2"><a class="px-5" href="./EmpLeaveReq.py?id=%s">Request</a></li>
+                            <li class="mt-2"><a class="px-5" href="./EmpLeaveView.py?id=%s">View</a></li>
                         </ul>
                     </div>
                     <li class="mt-3">
                         <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
-                            data-bs-target="#empsalary">Employee Salary <i class="fa-solid fa-caret-down"
+                            data-bs-target="#empsalary">Salary <i class="fa-solid fa-caret-down"
                                 style="color: white;"></i>
                         </h5>
+
                     </li>
                     <div class="collapse" id="empsalary">
-                        <ul>
-                            <li class="mt-2"><a class="px-5" href="./AdminEmpSalary.py">Calculation</a></li>
-                            <li class="mt-2"><a class="px-5" href="./AdminEmpSalaryView.py">View</a></li>
+                        <ul>                            
+                            <li class="mt-2"><a class="px-5" href="./EmpSalaryView.py?id=%s">View</a></li>
                         </ul>
                     </div>
-                    <li class="mt-3">
-                        <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
-                            data-bs-target="#empinvendrop" aria-controls="empinvendrop">Iventroy Details <i
-                                class="fa-solid fa-caret-down" style="color: white;"></i></h5>
-                    </li>
-                    <div class="collapse" id="empinvendrop">
-                        <ul>
-                            <li class="mt-2"><a class="px-5" href="./AdminInventoryView.py">View</a></li>
-                        </ul>
-                    </div>
+                    """ % (eid, eid, eid, eid, eid))
+print("""           <li></li>
                     <li></li>
                     <li></li>
                     <li></li>
@@ -92,60 +110,46 @@ print("""<!DOCTYPE html>
         </div>
         <div class="nav-content">
             <div class="container">
-                <div class="leaveview p-2">
+                <div class="border m-5 p-5">
+                    <h4 class=" text-center heading">Salary Details</h4>
                     <table class="table">
                         <thead>
-                            <tr>
+                            <tr class="h-70px">
                                 <th scope="col">S.No</th>
-                                <th scope="col">Emp Details</th>
-                                <th scope="col">Leave Type</th>
-                                <th scope="col">Reason</th>
-                                <th scope="col">From Date</th>
-                                <th scope="col">To Date</th>
-                                <th scope="col">Days Count</th>
-                                <th scope="col">Leave Details</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">Emp ID</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Month</th>                                
+                                <th scope="col">Salary</th>
+                                <th scope="col">Working</th>
+                                <th scope="col">Present</th>
+                                <th scope="col">Leave</th>
+                                <th scope="col">Gross Pay</th>
                             </tr>
                         </thead>
-                        <tbody>""")
-import pymysql
-import cgitb
-
+                        <tbody>
+                        """)
 cgitb.enable()
-dbconn1 = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
-curs = dbconn1.cursor()
+dbconn = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
+cur = dbconn.cursor()
 
-query1 = """select * from emp_leave_detailes where status = 'Waiting List'"""
+query = """select * from emp_salary_details where empid = '%s' order by calcdate desc""" % empid
+cur.execute(query)
+data = cur.fetchall()
 
-curs.execute(query1)
-details = curs.fetchall()
-for j in details:
-    print("""                        
-                            <tr>
-                                <form method="post" name="leave_req_form" enctype="multipart/form-data">
-                                    <th scope="row"><input type="text" name="lidtxt" value="%s" class="rmtextbox" readonly></th>
-                                    <td>
-                                        <h6>%s</h6>
-                                        <h6>%s</h6>
-                                    </td>
-                                    <td>%s</td>
-                                    <td style="width: 200px !important;">%s</td>
-                                    <td>%s</td>
-                                    <td>%s</td>
-                                    <td>%s</td>
-                                    <td><a href="./AdminEmpInLeave.py?id=%s" target="_blank" class="">Click to check <br> leave details</a></td>
-                                    <td>
-                                        <div>
-                                            <div><input type="submit" name="Approved" value="Approve"
-                                                    class="btn btn-success w-100 mb-2"></div>
-                                            <div><input type="submit" name="Reject" value="Reject"
-                                                    class="btn btn-danger w-100">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </form>
-                            </tr>""" % (j[0], j[1], j[2], j[3], j[4], j[5], j[6], j[7], j[1]))
-print("""                        
+for i in data:
+    print("""                                                   
+                            <tr class="h-70px">
+                                <th scope="row">%s</th>
+                                <td>%s</td>
+                                <td>%s</td>
+                                <td>%s</td>
+                                <td>%s</td>
+                                <td>%s</td>
+                                <td>%s</td>
+                                <td>%s</td>
+                                <td>%s</td>
+                            </tr>""" % (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]))
+print("""                            
                         </tbody>
                     </table>
                 </div>
@@ -256,60 +260,7 @@ print("""
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <!-- script  bootstrap link-->
-
 </body>
 
-</html>""")
-
-import pymysql
-import cgi
-import cgitb
-
-cgitb.enable()
-dbconn2 = pymysql.connect(host="localhost", user="root", password="", database="dkast_py_site")
-cur = dbconn2.cursor()
-
-form = cgi.FieldStorage()
-lid = form.getvalue('lidtxt')
-approvedbtn = form.getvalue('Approved')
-rejectbtn = form.getvalue('Reject')
-statusr = "Reject"
-statusa = "Approved"
-if approvedbtn != None:
-    updqu = ("""UPDATE emp_leave_detailes SET status = '%s' WHERE id = '%s'""" %(statusa, lid))
-    cur.execute(updqu)
-    if updqu:
-        print("""
-        <script>
-            alert("Leave Status sented");
-            window.location.href="AdminLeaveView.py";
-        </script>
-        """)
-    else:
-        print("""
-            <script>
-                alert("Error Leave Status sented");
-                window.location.href="AdminLeaveView.py";
-            </script>
-        """)
-    dbconn2.commit()
-    dbconn2.close()
-if rejectbtn != None:
-    upque = ("""UPDATE emp_leave_detailes SET status = '%s' WHERE id = '%s'""" % (statusr, lid))
-    cur.execute(upque)
-    if upque:
-        print("""
-        <script>
-            alert("Leave Status sented");
-            window.location.href="AdminLeaveView.py";
-        </script>
-        """)
-    else:
-        print("""
-            <script>
-                alert("Error Leave Status sented");
-                window.location.href="AdminLeaveView.py";
-            </script>
-        """)
-    dbconn2.commit()
-    dbconn2.close()
+</html>
+""")

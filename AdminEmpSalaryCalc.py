@@ -116,8 +116,8 @@ print("""
                     </li>
                     <div class="collapse" id="empdrop">
                         <ul>
-                            <li class="mt-2"><a class="px-5" href="./AdminEmpAdd.html">Add</a></li>
-                            <li class="mt-2"><a class="px-5" href="./AdminEmpView.html">View</a></li>
+                            <li class="mt-2"><a class="px-5" href="./AdminEmpAdd.py">Add</a></li>
+                            <li class="mt-2"><a class="px-5" href="./AdminEmpView.py">View</a></li>
                         </ul>
                     </div>
                     <li class="mt-3">
@@ -221,11 +221,11 @@ for i in data:
                         <div class="row mb-2">                          
                             <div class="col-sm-12 col-lg-3 p-2">
                                 <label for="wdays" class="form-label">Working Days</label>
-                                <input type="text" id="wdays" class="form-control" name="wdays" value="%s" required>
+                                <input type="text" id="wdays" class="form-control" name="wdays" required>
                             </div>
                             <div class="col-sm-12 col-lg-3 p-2">
                                 <label for="pdays" class="form-label">Present Days</label>
-                                <input type="text" id="pdays" class="form-control" name="pdays" value="%s" required>
+                                <input type="text" id="pdays" class="form-control" name="pdays" required>
                             </div>""")
     dbconn.commit()
     dbconn.close()
@@ -237,13 +237,24 @@ for i in data:
     qu1 = """select * from emp_leave_detailes where empid = '%s' && status = 'Approved' && paidornot = 'not'""" % empid
     cur1.execute(qu1)
     lev = cur1.fetchall()
+    totleaveid = []
+    totleavecount = []
     if lev:
         for j in lev:
-            print("""                            
+            leaveid = j[0]
+            totleaveid.append(leaveid)
+            leavecount = j[7]
+            totleavecount.append(leavecount)
+        sum = 0
+        for k in totleavecount:
+            addsum = int(k)
+            sum = sum + addsum
+        # print(sum)
+        print("""                            
                                 <div class="col-sm-12 col-lg-3 p-2">
                                     <label for="ldays" class="form-label">Leave Days</label>
                                     <input type="text" class="form-control" name="ldays" value="%s" id="ldays" required>
-                                </div>""" % j[7])
+                                </div>""" % sum)
     else:
         print("""                            
                                         <div class="col-sm-12 col-lg-3 p-2">
@@ -255,7 +266,7 @@ for i in data:
 print("""
                             <div class="col-sm-12 col-lg-3 p-2">
                                 <label for="gsalary" class="form-label">Gross pay</label>
-                                <input type="text" id="gsalary" class="form-control" name="gsalary" value="%s" required>
+                                <input type="text" id="gsalary" class="form-control" name="gsalary" required>
                             </div>
                         </div>
                         <div class="row mt-lg-5">
@@ -400,8 +411,9 @@ if btn != None:
                 location.href = "./AdminEmpSalaryView.py";
             </script>
         """)
-        inqur1 = """INSERT INTO emp_leave_detailes (paidornot) VALUES ('PAID')"""
-        curs2.execute(inqur1)
+        for m in totleaveid:
+            inqur1 = """UPDATE emp_leave_detailes SET paidornot = 'PAID' WHERE id = '%s' """ % m
+            curs2.execute(inqur1)
         # print("""
         #             <script>
         #                 alert("Employee Salary Details Updated");

@@ -85,7 +85,20 @@ print("""
                             <li class="mt-2"><a class="px-5" href="./EmpLeaveReq.py?id=%s">Request</a></li>
                             <li class="mt-2"><a class="px-5" href="./EmpLeaveView.py?id=%s">View</a></li>
                         </ul>
-                    </div>""" % (pid,pid,pid,pid))
+                    </div>
+                    <li class="mt-3">
+                        <h5 class="w-100" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                            data-bs-target="#empsalary">Salary <i class="fa-solid fa-caret-down"
+                                style="color: white;"></i>
+                        </h5>
+
+                    </li>
+                    <div class="collapse" id="empsalary">
+                        <ul>                            
+                            <li class="mt-2"><a class="px-5" href="./EmpSalaryView.py?id=%s">View</a></li>
+                        </ul>
+                    </div>
+                    """ % (pid, pid, pid, pid, pid))
 dbconn.commit()
 dbconn.close()
 cgitb.enable()
